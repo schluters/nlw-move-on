@@ -2,8 +2,9 @@ import Head from 'next/head';
 import styles from '../styles/pages/Home.module.css';
 import { ExperienceBar } from "../components/ExperienceBar";
 import { Profile } from '../components/Profile';
-import { CompletedChallanges } from '../components/CompletedChallanges';
+import { CompletedChallenges } from '../components/CompletedChallenges';
 import { Countdown } from '../components/Countdown';
+import { ChallangeBox } from '../components/ChallengeBox';
 
 export default function Home() {
   return (
@@ -15,10 +16,12 @@ export default function Home() {
       <section>
         <div>
           <Profile />
-          <CompletedChallanges />
+          <CompletedChallenges />
           <Countdown />
         </div>
-        <div></div>
+        <div>
+          <ChallangeBox />
+        </div>
       </section>
     </div>
   )

@@ -1,0 +1,103 @@
+.challangeBoxConainer {
+  height: 100%;
+  background: var(--white);
+  border-radius: 5px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 3.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.challangeNotActive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.challangeNotActive strong {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.challangeNotActive p {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 1.4;
+  justify-content: space-around;
+  margin-top: 3rem;
+  text-align: left;
+}
+
+.challangeNotActive img {
+  margin-right: 0.5rem;
+  width: 2rem;
+}
+
+.challangeActive {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.challangeActive header {
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 1.25rem;
+  padding: 0 2rem 1.5rem;
+  border-bottom: 1px solid var(--gray-line);
+}
+
+.challangeActive main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.challangeActive main strong {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--title);
+  margin: 1.5rem 0 1rem;
+}
+
+.challangeActive main p {
+  line-height: 1.5;
+}
+
+.challangeActive footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.challangeActive footer button {
+  height: 3rem;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: filter 0.2s;
+}
+
+.challangeActive footer button:hover {
+  filter: brightness(0.9);
+}
+
+.challangeActive footer button.challangeFailedButton {
+  background: var(--red);
+}
+.challangeActive footer button.ChallengesucceededButton {
+  background: var(--green)
+}
