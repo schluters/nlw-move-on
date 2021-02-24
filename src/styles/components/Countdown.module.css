@@ -76,3 +76,7 @@
   background: var(--red);
   color: var(--white);
 }
+
+.countdownButtonActive:not(:disabled):hover img {
+  filter: brightness(0) invert(1);
+}

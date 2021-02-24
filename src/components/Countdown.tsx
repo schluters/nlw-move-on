@@ -3,7 +3,7 @@ import { ChallengesContext } from '../contexts/ChallengesContext';
 import styles from '../styles/components/Countdown.module.css';
 
 let countdownTimeout: NodeJS.Timeout;
-const challengeTime = 0.1 * 60;
+const challengeTime = 15 * 60;
 
 export function Countdown() {
   const { startNewChallange } = useContext(ChallengesContext);
@@ -69,6 +69,7 @@ export function Countdown() {
               onClick={resetCountdown}
             >
               Abandonar ciclo
+              <img src="icons/close.svg" alt="Close" />
             </button>
           ) : (
             <button
@@ -77,6 +78,7 @@ export function Countdown() {
               onClick={startCountdown}
             >
               Iniciar um ciclo
+              <img src="icons/play-arrow.svg" alt="Play" />
             </button>
           ) }
         </>
