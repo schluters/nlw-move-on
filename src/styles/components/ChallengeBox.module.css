@@ -1,5 +1,6 @@
 .challangeBoxConainer {
   height: 100%;
+  min-height: 320px;
   background: var(--shape);
   border-radius: 5px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);

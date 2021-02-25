@@ -15,9 +15,20 @@
   align-content: center;
 }
 
+@media(max-width: 720px) {
+  .container section {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-content: center;
+  }
+}
+
 .footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 2rem 0;
 }
