@@ -30,7 +30,7 @@ export default function Home({ toggleTheme }) {
           </div>
         </section>
       </CountdownProvider>
-      <footer>
+      <footer className={styles.footer}>
         <Switch
           onChange={toggleTheme}
           checked={title === 'dark'}
