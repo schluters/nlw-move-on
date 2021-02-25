@@ -54,7 +54,7 @@ export function Countdown() {
           ) : (
             <button
               type="button"
-              className={styles.countdownButton}
+              className={`${styles.countdownButton} ${styles.countdownButtonStart}`}
               onClick={startCountdown}
             >
               Iniciar um ciclo

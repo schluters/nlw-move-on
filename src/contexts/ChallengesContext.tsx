@@ -1,4 +1,5 @@
 import { createContext, useState, ReactNode, useEffect } from 'react';
+import usePersistedState from '../utils/usePersistedState';
 import challenges from '../../challenges.json';
 
 interface Challenge {
@@ -25,9 +26,9 @@ interface ChallagesProviderProps {
 export const ChallengesContext = createContext({} as ChallengesContextData);
 
 export function ChallagesProvider({ children }) {
-  const [level, setLevel] = useState(1);
-  const [currentExperience, setCurrentExperience] = useState(0);
-  const [challengesCompleted, setChallengesCompleted] = useState(0);
+  const [level, setLevel] = usePersistedState('level', 1);
+  const [currentExperience, setCurrentExperience] = usePersistedState('xp', 0);
+  const [challengesCompleted, setChallengesCompleted] = usePersistedState('done', 0);
   const [activeChallenge, setActiveChallenge] = useState(null);
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
@@ -46,7 +47,9 @@ export function ChallagesProvider({ children }) {
     setActiveChallenge(challenge);
 
     new Audio('/notification.mp3').play();
-    if (Notification.permission === 'granted') {
+    if (Notification.permission !== "granted") {
+      Notification.requestPermission();
+    } else {
       new Notification('Novo desafio 🥊', {
         body: `Valendo ${challenge.amount}xp!`
       })

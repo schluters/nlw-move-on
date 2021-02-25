@@ -1,6 +1,6 @@
 .challangeBoxConainer {
   height: 100%;
-  background: var(--white);
+  background: var(--shape);
   border-radius: 5px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
   padding: 1.5rem 3.2rem;
@@ -85,7 +85,7 @@
   justify-content: center;
   border: 0;
   border-radius: 5px;
-  color: var(--white);
+  color: var(--shape);
   font-size: 1rem;
   font-weight: 600;
   transition: filter 0.2s;

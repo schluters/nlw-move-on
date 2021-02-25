@@ -14,3 +14,10 @@
   gap: 6.25rem;
   align-content: center;
 }
+
+.container footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

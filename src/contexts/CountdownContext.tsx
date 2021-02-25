@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { ChallengesContext } from './ChallengesContext';
-
 interface CountdownContextData {
   minutes: number;
   seconds: number;
