@@ -7,6 +7,7 @@ interface CountdownContextData {
   isActive: boolean;
   startCountdown: () => void;
   resetCountdown: () => void;
+  percentToClose: number;
 }
 
 interface CountdownProviderProps {
@@ -15,14 +16,17 @@ interface CountdownProviderProps {
 
 export const CountdownContext = createContext({} as CountdownContextData)
 
-const challengeTime = 0.05 * 60;
+// const challengeTime = 0.10 * 60;
 let countdownTimeout: NodeJS.Timeout;
 
 export function CountdownProvider({ children }) {
-  const { startNewChallange, resetChallenge } = useContext(ChallengesContext);
+  const { level, startNewChallange, resetChallenge } = useContext(ChallengesContext);
+  const challengeTime = Math.pow((level) * 10, 2);
+
   const [time, setTime] = useState(challengeTime);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
+  const [percentToClose, setPercentToClose] = useState(100);
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -30,11 +34,13 @@ export function CountdownProvider({ children }) {
   function startCountdown() {
     setIsActive(true);
     setTime(challengeTime);
+    setPercentToClose(Math.round(time * 100) / challengeTime);
   }
 
   function resetCountdown() {
     clearTimeout(countdownTimeout);
     resetChallenge();
+    setPercentToClose(100);
     setIsActive(false);
     setHasFinished(false);
     setTime(challengeTime);
@@ -44,6 +50,7 @@ export function CountdownProvider({ children }) {
     if (isActive && time > 0) {
       countdownTimeout = setTimeout(() => {
         setTime(time - 1);
+        setPercentToClose(Math.round(time * 100) / challengeTime);
       }, 1000)
     } else if (isActive && time === 0) {
       startNewChallange();
@@ -61,6 +68,7 @@ export function CountdownProvider({ children }) {
         isActive,
         startCountdown,
         resetCountdown,
+        percentToClose,
       }}
     >
       { children }

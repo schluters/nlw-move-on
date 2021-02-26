@@ -14,10 +14,11 @@ Sistema desenvolvido com base no conhecimento adiquirido durante a semana do eve
 24 fev - Contexto e componentes - #focopraticagrupo
 25 fev - Storage, SSR & Lambda - #neverstoplearning
 26 fev - Próximo nível com React - #missioncomplete
+26 fev - Acelerando sua carreira - DONE
 ```
 :hourglass: WAITING
 ```bash
-26 fev - Acelerando sua carreira
+NEW CHALLENGES!!!
 ```
 
 ## :mortar_board: Developer

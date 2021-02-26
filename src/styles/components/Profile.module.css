@@ -1,3 +1,9 @@
+.profileWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 .profileContainer {
   display: flex;
   align-items: center;
@@ -26,4 +32,14 @@
 
 .profileContainer div p img {
   margin-right: 0.5rem;
+}
+
+.profileWrapper button {
+  background:none;
+  border:0;
+  font-size: 0;
+  transition: linear 0.2s;
+}
+.profileWrapper button:hover {
+  transform:scale(1.3);
 }

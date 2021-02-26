@@ -49,6 +49,8 @@
   font-size: 1.25rem;
   font-weight: 600;
   transition: background-color 0.2s;
+  position: relative;
+  overflow: hidden;
 }
 
 .countdownButton img {
@@ -70,6 +72,16 @@
 .countdownButtonActive {
   background: var(--shape);
   color: var(--title);
+}
+
+.countdownButtonActive span {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--red);
+  border-radius: 1px;
+  transition: linear 0.2s;
 }
 
 .countdownButtonActive:not(:disabled):hover {

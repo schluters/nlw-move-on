@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import Switch from 'react-switch';
@@ -16,6 +17,7 @@ interface HomeProps {
   currentExperience: number;
   challengesCompleted: number;
   toggleTheme: boolean;
+  session?: string;
 }
 
 export default function Home({ toggleTheme, ...rest }) {
@@ -34,7 +36,7 @@ export default function Home({ toggleTheme, ...rest }) {
         <CountdownProvider>
           <section>
             <div>
-              <Profile />
+              <Profile data={rest.session} />
               <CompletedChallenges />
               <Countdown />
             </div>

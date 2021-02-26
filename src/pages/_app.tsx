@@ -1,13 +1,15 @@
 import React from 'react';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
-import { ChallagesProvider } from '../contexts/ChallengesContext';
 import usePersistedState from '../utils/usePersistedState';
 
 import light from '../styles/themes/light';
 import dark from '../styles/themes/dark';
 import GlobalStyle from '../styles/global';
+import Login from './login';
+import { useSession } from 'next-auth/client';
 
 function MyApp({ Component, pageProps }) {
+  const [session] = useSession();
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
@@ -15,7 +17,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Component {...pageProps} toggleTheme={toggleTheme} />
+      {!session ? <Login /> : <Component {...pageProps} toggleTheme={toggleTheme} session={session} />}
     </ThemeProvider>
   );
 }
