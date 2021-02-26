@@ -11,6 +11,7 @@ declare module 'styled-components' {
       title: string;
       invertWhite: string;
       invertBlack: string;
+      overlay: string;
     }
   }
 }

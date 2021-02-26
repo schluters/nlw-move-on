@@ -28,4 +28,5 @@ span.currentExperience {
   top: 12px;
   transform: translateX(-50%);
   min-width: 3.75rem;
+  text-align: center;
 }

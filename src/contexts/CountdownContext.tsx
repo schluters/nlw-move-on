@@ -15,12 +15,12 @@ interface CountdownProviderProps {
 
 export const CountdownContext = createContext({} as CountdownContextData)
 
-// const challengeTime = 0.5 * 60;
+const challengeTime = 0.05 * 60;
 let countdownTimeout: NodeJS.Timeout;
 
 export function CountdownProvider({ children }) {
   const { startNewChallange, resetChallenge } = useContext(ChallengesContext);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(challengeTime);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
 
@@ -29,7 +29,7 @@ export function CountdownProvider({ children }) {
 
   function startCountdown() {
     setIsActive(true);
-    setTime((startNewChallange() / 30 ) * 60);
+    setTime(challengeTime);
   }
 
   function resetCountdown() {
@@ -37,7 +37,7 @@ export function CountdownProvider({ children }) {
     resetChallenge();
     setIsActive(false);
     setHasFinished(false);
-    setTime(0);
+    setTime(challengeTime);
   }
 
   useEffect(() => {
@@ -46,6 +46,7 @@ export function CountdownProvider({ children }) {
         setTime(time - 1);
       }, 1000)
     } else if (isActive && time === 0) {
+      startNewChallange();
       setHasFinished(true);
       setIsActive(false);
     }
