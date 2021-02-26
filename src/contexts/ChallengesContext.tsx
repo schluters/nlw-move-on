@@ -14,7 +14,7 @@ interface ChallengesContextData {
   challengesCompleted: number;
   activeChallenge: Challenge;
   levelUp: () => void;
-  startNewChallange: () => void;
+  startNewChallange: () => number;
   resetChallenge: () => void;
   completeChallenge: () => void;
 }
@@ -45,15 +45,7 @@ export function ChallagesProvider({ children }) {
     const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
     const challenge = challenges[randomChallengeIndex];
     setActiveChallenge(challenge);
-
-    new Audio('/notification.mp3').play();
-    if (Notification.permission !== "granted") {
-      Notification.requestPermission();
-    } else {
-      new Notification('Novo desafio 🥊', {
-        body: `Valendo ${challenge.amount}xp!`
-      })
-    }
+    return challenge.amount;
   }
 
   function resetChallenge() {
@@ -75,6 +67,15 @@ export function ChallagesProvider({ children }) {
     setCurrentExperience(finalExperience);
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1)
+
+    new Audio('/notification.mp3').play();
+    if (Notification.permission !== "granted") {
+      Notification.requestPermission();
+    } else {
+      new Notification('Novo desafio disponível 🥊', {
+        body: `Aumente ainda mais seu xp!`
+      })
+    }
   }
 
   return (
