@@ -15,9 +15,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <ChallagesProvider>
-        <Component {...pageProps} toggleTheme={toggleTheme} />
-      </ChallagesProvider>
+      <Component {...pageProps} toggleTheme={toggleTheme} />
     </ThemeProvider>
   );
 }

@@ -1,13 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-}
-
 :root {
   --shape: ${props => props.theme.colors.shape};
   --background: ${props => props.theme.colors.background};
@@ -22,6 +15,14 @@ export default createGlobalStyle`
   --blue-twitter: #2AA9E0;
   --invert-white: ${props => props.theme.colors.invertWhite};
   --invert-black: ${props => props.theme.colors.invertBlack};
+  --overlay: ${props => props.theme.colors.overlay};
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: var(--text-highlight);
 }
 
 @media(max-width: 1080px) {
