@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      {!session ? <Login /> : <Component {...pageProps} toggleTheme={toggleTheme} session={session} />}
+      {session ? <Component {...pageProps} toggleTheme={toggleTheme} session={session} /> : <Login {...pageProps} />}
     </ThemeProvider>
   );
 }

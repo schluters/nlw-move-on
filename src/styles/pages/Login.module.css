@@ -43,7 +43,8 @@
 }
 
 .container button {
-  width: 20rem;
+  width: 100%;
+  max-width: 22rem;
   height: 5rem;
   display: flex;
   align-items: center;
