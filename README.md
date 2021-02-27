@@ -21,6 +21,13 @@ Sistema desenvolvido com base no conhecimento adiquirido durante a semana do eve
 NEW CHALLENGES!!!
 ```
 
+## :tractor: Improvements
+- Theme Mode
+- Login OAuth GitHub
+- Sidebar
+- Countdown baseado na XP do Level
+- Timer para abandonar baseado no Coutdown
+
 ## :mortar_board: Developer
 
 *Herson Schluter*
