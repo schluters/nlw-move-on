@@ -1,0 +1,35 @@
+.sidebarContainer {
+  background-image: linear-gradient(var(--shape),var(--background));
+  height: 100vh;
+  width: 7rem;
+  min-width: 5rem;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header img {
+  display: block;
+  width: 100%;
+  max-width: 5rem;
+  cursor: alias;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  font-size: 0.7rem;
+  line-height: 2;
+  color: var(--text)
+}

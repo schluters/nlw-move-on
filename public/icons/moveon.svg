@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4cd62b;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="On_copy" data-name="On copy" class="cls-1" d="M56,16.088H51.882l0.726-4.1H19.653l-0.726,4.1H14.807L9,48.9h4.119L12.39,53H45.345l0.726-4.1H50.19ZM37.964,29.831l-1.911,6.6h4.656L27.631,48.357,22.717,36.428h4.656l1.911-6.6H24.628L37.707,17.9,42.62,29.831H37.964Z"/>
+</svg>

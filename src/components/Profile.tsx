@@ -2,9 +2,6 @@ import { signOut } from 'next-auth/client';
 import { useContext } from 'react';
 import { ChallengesContext } from '../contexts/ChallengesContext';
 import styles from '../styles/components/Profile.module.css';
-interface ProfileProps {
-  data: string;
-}
 
 export function Profile(props) {
   const { level } = useContext(ChallengesContext);

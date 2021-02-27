@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="540" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-opacity: 0.1;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="MoveOn" data-name="MoveOn" class="cls-1" d="M973.022,152.835H879.416l16.5-93.128H147.062l-16.5,93.128H36.957L-95.086,897.864H-1.48l-16.5,93.129H730.874l16.5-93.129h93.606ZM563.162,464.9L519.737,614.7H625.544l-297.2,270.864L216.7,614.7H322.5l43.424-149.8H260.12l297.2-270.864L668.967,464.9h-105.8Z"/>
+</svg>

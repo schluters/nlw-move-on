@@ -15,5 +15,5 @@ export default (req, res) => NextAuth(req, res, {
     secret: process.env.JWT_SECRET
   },
   // A database is optional, but required to persist accounts in a database
-  database: process.env.DATABASE_URL,
+  // database: process.env.DATABASE_URL,
 })

@@ -1,13 +1,14 @@
 .wrapper {
   height: 100vh;
   width: 100vw;
-  background-color: var(--blue-dark);
-  background: linear-gradient(45deg, var(--blue) 0%, var(--blue-dark) 50%, var(--blue) 100%);
+  /* background-color: #202024; */
+  /* background: linear-gradient(45deg, #202024 0%, #1e1e1e 50%, #202024 100%); */
+  background: #202024 url('/bg-moveon.svg') no-repeat center left;
+  background-size: cover;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  padding-right: 20%;
+  align-items: center;
 }
 
 .container {
@@ -22,7 +23,7 @@
   text-align: left;
 }
 .container .logo {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .container strong {
@@ -49,7 +50,8 @@
   justify-content: center;
   border: 0;
   border-radius: 5px;
-  background: var(--blue);
+  background: #333;
+  border: 1px solid #666;
   color: var(--shape);
   font-size: 1.25rem;
   font-weight: 600;

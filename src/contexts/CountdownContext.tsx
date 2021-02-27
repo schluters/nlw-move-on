@@ -26,21 +26,21 @@ export function CountdownProvider({ children }) {
   const [time, setTime] = useState(challengeTime);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
-  const [percentToClose, setPercentToClose] = useState(100);
+  const [percentToClose, setPercentToClose] = useState(0);
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-
+  console.log(percentToClose);
   function startCountdown() {
     setIsActive(true);
     setTime(challengeTime);
-    setPercentToClose(Math.round(time * 100) / challengeTime);
+    setPercentToClose(100 - (time / challengeTime * 100));
   }
 
   function resetCountdown() {
     clearTimeout(countdownTimeout);
     resetChallenge();
-    setPercentToClose(100);
+    setPercentToClose(0);
     setIsActive(false);
     setHasFinished(false);
     setTime(challengeTime);
@@ -50,7 +50,7 @@ export function CountdownProvider({ children }) {
     if (isActive && time > 0) {
       countdownTimeout = setTimeout(() => {
         setTime(time - 1);
-        setPercentToClose(Math.round(time * 100) / challengeTime);
+        setPercentToClose(100 - (time / challengeTime * 100));
       }, 1000)
     } else if (isActive && time === 0) {
       startNewChallange();

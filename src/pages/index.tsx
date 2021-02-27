@@ -1,7 +1,5 @@
-import React from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
-import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
 import styles from '../styles/pages/Home.module.css';
 import { ExperienceBar } from "../components/ExperienceBar";
@@ -12,6 +10,7 @@ import { ChallangeBox } from '../components/ChallengeBox';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { useContext } from 'react';
 import { ChallagesProvider } from '../contexts/ChallengesContext';
+import { Sidebar } from '../components/Sidebar';
 interface HomeProps {
   level: number;
   currentExperience: number;
@@ -21,45 +20,32 @@ interface HomeProps {
 }
 
 export default function Home({ toggleTheme, ...rest }) {
-  const { colors, title } = useContext(ThemeContext);
   return (
     <ChallagesProvider
       level={rest.level}
       currentExperience={rest.currentExperience}
       challengesCompleted={rest.challengesCompleted}
     >
-      <div className={styles.container}>
-        <Head>
-          <title>Início | move.on</title>
-        </Head>
-        <ExperienceBar />
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile data={rest.session} />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallangeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-        <footer className={styles.footer}>
-          <Switch
-            onChange={toggleTheme}
-            checked={title === 'dark'}
-            checkedIcon={false}
-            uncheckedIcon={false}
-            height={10}
-            width={36}
-            handleDiameter={20}
-            offHandleColor={colors.text}
-            onHandleColor={colors.textHighlight}
-            offColor={colors.grayLine}
-            onColor={colors.text}
-          />
-        </footer>
+      <Head>
+        <title>Início | move.on</title>
+      </Head>
+      <div className={styles.wrapper}>
+        <Sidebar toggleTheme={toggleTheme} />
+        <div className={styles.container}>
+          <ExperienceBar />
+          <CountdownProvider>
+            <section>
+              <div>
+                <Profile data={rest.session} />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
+              <div>
+                <ChallangeBox />
+              </div>
+            </section>
+          </CountdownProvider>
+        </div>
       </div>
     </ChallagesProvider>
   )
