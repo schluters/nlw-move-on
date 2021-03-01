@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import usePersistedState from '../utils/usePersistedState';
 
@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
   }
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />

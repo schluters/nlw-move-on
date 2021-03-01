@@ -21,7 +21,8 @@ let countdownTimeout: NodeJS.Timeout;
 
 export function CountdownProvider({ children }) {
   const { level, startNewChallange, resetChallenge } = useContext(ChallengesContext);
-  const challengeTime = Math.pow((level) * 10, 2);
+  const challengeTime = 0.05 * 60;
+  // const challengeTime = Math.pow((level) * 10, 2);
 
   const [time, setTime] = useState(challengeTime);
   const [isActive, setIsActive] = useState(false);
@@ -30,7 +31,7 @@ export function CountdownProvider({ children }) {
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-  console.log(percentToClose);
+
   function startCountdown() {
     setIsActive(true);
     setTime(challengeTime);

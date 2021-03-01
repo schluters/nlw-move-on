@@ -8,6 +8,7 @@ export function Profile(props) {
   function signOutMoveOn() {
     signOut();
   }
+
   return (
     <div className={styles.profileWrapper}>
       <div className={styles.profileContainer}>
