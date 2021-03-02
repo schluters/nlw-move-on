@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
@@ -15,10 +15,10 @@ const config = {
 
 export function loadFirebase() {
   function initFirebase() {
-    if (!firebase.apps.length) {
-      firebase.initializeApp(config);
+    if (!firebase.default.apps.length) {
+      firebase.default.initializeApp(config);
     }
   }
   initFirebase();
-  return firebase.database();
+  return firebase.default.database();
 }
