@@ -126,7 +126,7 @@ export default function Home({ toggleTheme, ...rest }) {
   )
 }
 
-export const getStaticProps:GetServerSideProps = async () => {
+export const getServerSideProps:GetServerSideProps = async () => {
   const firebase = loadFirebase();
   const result = await new Promise((resolve, reject) => {
     firebase.ref('profiles')
