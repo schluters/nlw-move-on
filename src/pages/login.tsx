@@ -7,7 +7,7 @@ export default function Login() {
   return (
     <div className={styles.wrapper}>
       <Head>
-        <title>Sign in | MoveOn</title>
+        <title>Sign in | Move.On</title>
       </Head>
       <div className={styles.container}>
         <img className={styles.logo} src="/move-on-logo.svg" alt="MoveOn"/>

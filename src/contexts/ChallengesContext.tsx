@@ -23,11 +23,7 @@ interface ChallengesContextData {
 }
 interface ChallagesProviderProps {
   children: ReactNode;
-  user: string;
-  level: number;
-  currentExperience: number;
-  challengesCompleted: number;
-  totalExperience: number;
+  dataUser: ProfilesProps;
 }
 interface UserProps {
   name: string;

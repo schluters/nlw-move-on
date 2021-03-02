@@ -1,12 +1,16 @@
 .sidebarContainer {
   background-image: linear-gradient(var(--shape),var(--background));
   height: 100vh;
-  width: 7rem;
+  width: 5rem;
   min-width: 5rem;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .header {
@@ -19,10 +23,13 @@
 .header img {
   display: block;
   width: 100%;
-  max-width: 5rem;
+  margin-top: 1rem;
+  max-width: 4.5rem;
   cursor: alias;
 }
-
+.nav ul {
+  list-style: none;
+}
 .nav ul li {
   text-align: center;
   position: relative;
@@ -33,7 +40,7 @@
 .nav li.active:before {
   content: " ";
   display: block;
-  background: var(--blue);
+  background: var(--green);
   width: 4px;
   position: absolute;
   top: 0;
@@ -49,7 +56,7 @@
 }
 
 .nav li.active a svg {
-  fill: var(--blue);
+  fill: var(--green);
 }
 
 .footer {
@@ -61,4 +68,46 @@
   font-size: 1rem;
   line-height: 2;
   color: var(--text)
+}
+
+
+@media(max-width: 720px) {
+  .sidebarContainer {
+    background-image: none;
+    background-color: var(--shape);
+    height: 5rem;
+    width: 100vw;
+    min-width: 100%;
+    flex-direction: row;
+  }
+
+  .header img {
+    margin-top: -10px;
+  }
+
+  .nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .nav ul li {
+    padding: 0 .5rem;
+    margin: 0 .5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav li.active:before {
+    width: 100%;
+    height: 4px;
+    border-radius: 0 0 5px 5px;
+  }
+
+  .footer {
+    padding: 0 2rem;
+  }
 }

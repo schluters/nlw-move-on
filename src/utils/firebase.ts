@@ -8,9 +8,9 @@ const config = {
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
   databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}-default-rtdb.firebaseio.com/`,
   storageBucket: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.appspot.com`,
-  messagingSenderId: '714589765652',
-  appId: '1:714589765652:web:07dece89505f30c457e701',
-  measurementId: 'G-S8HF98JPHL',
+  messagingSenderId: '1058018246800',
+  appId: '1:1058018246800:web:968086df2853ba69a71815',
+  measurementId: 'G-F4HVQEFCLD',
 };
 
 export function loadFirebase() {

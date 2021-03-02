@@ -2,6 +2,7 @@
   height: 100vh;
   display: flex;
   align-items: center;
+  margin-left: 5rem;
 }
 
 .container {
@@ -22,6 +23,12 @@
 }
 
 @media(max-width: 720px) {
+  .wrapper {
+    margin-left: 0;
+  }
+  .container {
+    margin-top: 7rem;
+  }
   .container section {
     flex: 1;
     display: grid;

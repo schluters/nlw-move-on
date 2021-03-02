@@ -42,10 +42,9 @@ export default function Home({ toggleTheme, ...rest }) {
           for (const key in users) {
             if (users[key].user.email === xpData.user.email) {
               db.child(key).update(xpData)
-            } else if ( !xpData.user.email ) {
-              xpData.user && db.push(xpData);
             } else {
-              router.push('/login')
+              router.push('/');
+              console.log('Error updating profile');
             }
           }
         })
@@ -68,15 +67,20 @@ export default function Home({ toggleTheme, ...rest }) {
     db.get()
       .then(snapshot => {
         const profile = snapshot.val();
-        !profile && db.push(data);
+        if(!profile && data.user.email != "") {
+          db.push(data)
+        }
       })
       .catch(error => {
         console.log('Error loading profile', error);
       })
     for (const profile in profiles) {
+      if (profiles[profile].user.email == "") {
+        db.child(profile).remove();
+      }
       if (profiles[profile].user.email === rest.session.user.email) {
         data = (profiles[profile])
-      } else if( !rest.session.user.email ) {
+      } else if( rest.session.user.email ) {
         db.push(data);
       } else {
         router.push('/login')
@@ -92,7 +96,7 @@ export default function Home({ toggleTheme, ...rest }) {
       {...rest}
     >
       <Head>
-        <title>Início | move.on</title>
+        <title>Challenges | Move.On</title>
       </Head>
       <div className={styles.wrapper}>
         <Sidebar toggleTheme={toggleTheme} />
