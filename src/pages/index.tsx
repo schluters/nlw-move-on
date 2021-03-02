@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import styles from '../styles/pages/Home.module.css';
 import { loadFirebase } from '../utils/firebase';
@@ -28,6 +29,7 @@ interface ProfilesProps {
 }
 
 export default function Home({ toggleTheme, ...rest }) {
+  const router = useRouter();
   const profiles = rest.pageProps.profiles;
 
   const saveProfile = useCallback(async (xpData) => {
@@ -40,8 +42,10 @@ export default function Home({ toggleTheme, ...rest }) {
           for (const key in users) {
             if (users[key].user.email === xpData.user.email) {
               db.child(key).update(xpData)
-            } else {
+            } else if ( !xpData.user.email ) {
               xpData.user && db.push(xpData);
+            } else {
+              router.push('/login')
             }
           }
         })
@@ -54,42 +58,28 @@ export default function Home({ toggleTheme, ...rest }) {
   function loadProfile() {
     const firebase = loadFirebase();
     const db = firebase.ref("profiles");
-    db.get()
-      .then(snapshot => {
-        const profile = snapshot.val();
-        !profile && db.push({
-          user: rest.session.user,
-          level: 1,
-          challenges: 0,
-          currentxp: 0,
-          totalxp: 0,
-        });
-      })
-      .catch(error => {
-        console.log('Error loading profile', error);
-      })
     let data:ProfilesProps = {
-      user: {
-        name: '',
-        email: '',
-        image: '',
-      },
+      user: rest.session.user,
       level: 1,
       challenges: 0,
       currentxp: 0,
       totalxp: 0,
     }
+    db.get()
+      .then(snapshot => {
+        const profile = snapshot.val();
+        !profile && db.push(data);
+      })
+      .catch(error => {
+        console.log('Error loading profile', error);
+      })
     for (const profile in profiles) {
       if (profiles[profile].user.email === rest.session.user.email) {
         data = (profiles[profile])
+      } else if( !rest.session.user.email ) {
+        db.push(data);
       } else {
-        db.push({
-          user: rest.session.user,
-          level: 1,
-          challenges: 0,
-          currentxp: 0,
-          totalxp: 0,
-        });
+        router.push('/login')
       }
     }
     return data;

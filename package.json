@@ -16,6 +16,7 @@
     "next-firebase-auth": "^0.13.0-alpha.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-icons": "^4.2.0",
     "react-switch": "^6.0.0",
     "styled-components": "^5.2.1"
   },
