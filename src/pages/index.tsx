@@ -13,8 +13,6 @@ import { Profile } from '../components/Profile';
 import { CompletedChallenges } from '../components/CompletedChallenges';
 import { Countdown } from '../components/Countdown';
 import { ChallangeBox } from '../components/ChallengeBox';
-import { Sidebar } from '../components/Sidebar';
-import { Toaster } from 'react-hot-toast';
 
 interface UserProps {
   name: string;
@@ -97,9 +95,6 @@ export default function Home({ toggleTheme, ...rest }) {
       <Head>
         <title>Challenges | Move.On</title>
       </Head>
-      <div className={styles.wrapper}>
-        <Toaster />
-        <Sidebar toggleTheme={toggleTheme} />
         <div className={styles.container}>
           <ExperienceBar />
           <CountdownProvider>
@@ -115,7 +110,6 @@ export default function Home({ toggleTheme, ...rest }) {
             </section>
           </CountdownProvider>
         </div>
-      </div>
     </ChallagesProvider>
   )
 }

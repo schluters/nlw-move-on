@@ -5,6 +5,8 @@ import dark from '../styles/themes/dark';
 import GlobalStyle from '../styles/global';
 import Login from './login';
 import { useSession, getSession } from 'next-auth/client';
+import { Sidebar } from '../components/Sidebar';
+import { Toaster } from 'react-hot-toast';
 
 export default function MyApp({ Component, ...pageProps }) {
   const [session, loading] = useSession();
@@ -26,7 +28,11 @@ export default function MyApp({ Component, ...pageProps }) {
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        { <Component {...pageProps} toggleTheme={toggleTheme} session={session} /> }
+        <div className="wrapper">
+          <Toaster />
+          <Sidebar toggleTheme={toggleTheme} />
+          <Component {...pageProps} toggleTheme={toggleTheme} session={session} />
+        </div>
       </ThemeProvider>
     )
   }

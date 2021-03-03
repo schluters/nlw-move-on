@@ -25,6 +25,13 @@ export default createGlobalStyle`
   outline: var(--text-highlight);
 }
 
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  margin-left: 5rem;
+}
+
 .loading {
   height: 100vh;
   width: 100%;
@@ -65,6 +72,9 @@ export default createGlobalStyle`
   html {
     font-size: 87.5%;
   }
+  .wrapper {
+    margin-left: 0;
+  }
 }
 
 body {
@@ -73,7 +83,7 @@ body {
 }
 
 body, input, textarea, button {
-  font: 400 1rem "Inter", sans-serif;
+  font: 400 1rem "Montserrat", sans-serif;
 }
 
 button {
@@ -84,4 +94,4 @@ a {
   color: inherit;
   text-decoration: none;
 }
-`;
+`
