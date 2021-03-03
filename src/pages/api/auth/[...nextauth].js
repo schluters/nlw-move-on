@@ -8,6 +8,10 @@ export default (req, res) => NextAuth(req, res, {
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
+    Providers.Facebook({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET
+    }),
   ],
   debug: process.env.NODE_ENV === 'development',
   secret: process.env.AUTH_SECRET,
