@@ -22,7 +22,7 @@
   align-content: center;
 }
 
-@media(max-width: 720px) {
+@media(max-width: 767px) {
   .wrapper {
     margin-left: 0;
   }

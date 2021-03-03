@@ -32,25 +32,27 @@ export default createGlobalStyle`
   align-items: center;
   justify-content: center;
   align-content: center;
-  transform: scale(2);
   background: var(--background);
-  opacity: 0.75;
+  opacity: 0.975;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
 }
 
 .c-loader {
-  animation: is-rotating 1s infinite;
+  animation: pulsate 1s infinite;
   border: 6px solid var(--gray-line);
   border-radius: 50%;
   border-top-color: var(--green);
-  height: 50px;
-  width: 50px;
+  height: 3.75rem;
+  width: 3.75rem;
 }
 
-@keyframes is-rotating {
-  to {
-    transform: rotate(1turn);
-    transform: scale(1.2);
-  }
+@keyframes pulsate {
+    0% {transform: scale(1.0, 1.0) rotate(0deg); opacity: 0.5;}
+    50% {transform: scale(1.2, 1.2) rotate(1turn); opacity: 1;}
+    100% {transform: scale(1.0, 1.0) rotate(360deg); opacity: 0.5;}
 }
 
 @media(max-width: 1080px) {
@@ -59,7 +61,7 @@ export default createGlobalStyle`
   }
 }
 
-@media(max-width: 720px) {
+@media(max-width: 767px) {
   html {
     font-size: 87.5%;
   }

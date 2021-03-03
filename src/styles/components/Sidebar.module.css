@@ -71,7 +71,7 @@
 }
 
 
-@media(max-width: 720px) {
+@media(max-width: 767px) {
   .sidebarContainer {
     background-image: none;
     background-color: var(--shape);
