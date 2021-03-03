@@ -111,11 +111,19 @@
 }
 
 @media(max-width: 767px) {
+  .profile strong {
+    font-size: 1.2rem;
+  }
   .score span {
     align-items: center;
     text-align: center;
   }
   .score strong {
     font-size: 1.75rem;
+  }
+  .topUser .position::before {
+    width: 2rem;
+    height: 2rem;
+    right: 0;
   }
 }
