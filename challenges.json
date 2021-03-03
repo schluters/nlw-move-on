@@ -1,8 +1,13 @@
 [
   {
-    "type": "body",
+    "type": "drinking",
     "description": "Levante-se e vá se hidratar! 🥃 Além de movimentar o corpo você mantem seu corpo hidratado",
     "amount": 150
+  },
+  {
+    "type": "toilet",
+    "description": "Aproveite o intervalo para ir ao banheiro 💩, se estiver sem vontade, apenas de uma caminhada para esticar as pernas!",
+    "amount": 20
   },
   {
     "type": "body",
