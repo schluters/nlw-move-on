@@ -1,6 +1,11 @@
 [
   {
     "type": "body",
+    "description": "Levante-se e vá se hidratar! 🥃 Além de movimentar o corpo você mantem seu corpo hidratado",
+    "amount": 150
+  },
+  {
+    "type": "body",
     "description": "Estique um de seus braços com a palma da mão virada para frente e puxe os dedos para cima por 10 segundos por mão.",
     "amount": 80
   },
@@ -51,6 +56,11 @@
   },
   {
     "type": "eye",
+    "description": "Com o dedo, faça um número oito no ar, sempre acompanhando com o olhar e a cabeça parada. Faça isso por 30 segundos.",
+    "amount": 80
+  },
+  {
+    "type": "eye",
     "description": "Usando os polegares, massage a área abaixo das sobrancelhas em movimentos circulares por 15 segundos.",
     "amount": 70
   },
@@ -58,5 +68,45 @@
     "type": "body",
     "description": "Em pé, gire a cintura o máximo que puder para a esquerda, segure por cinco segundos. Repita para a direita.",
     "amount": 90
+  },
+  {
+    "type": "body",
+    "description": "Levante uma perna atrás, segurando pelo pé, e aguente por cinco segundos. Faça o mesmo com a outra perna e repita cinco vezes.",
+    "amount": 90
+  },
+  {
+    "type": "body",
+    "description": "Sentado, endireite a coluna, estique as pernas o máximo que conseguir e aguente dez segundos. Faça duas séries de dez.",
+    "amount": 80
+  },
+  {
+    "type": "body",
+    "description": "Estique as pernas à frente do seu corpo e alongue-se tentando pegar as pontas dos pés com as mãos.",
+    "amount": 50
+  },
+  {
+    "type": "body",
+    "description": "Estique seu braço direito em direção ao lado esquerdo o máximo que puder. Apoie a mão esquerda na dobra do seu cotovelo esquerdo, ajudando a alongá-lo. Sinta o alongamento por cerca de cinco segundos e, depois, faça o mesmo movimento com o outro braço. Tente repetir cinco vezes de cada lado.",
+    "amount": 100
+  },
+  {
+    "type": "body",
+    "description": "Coloque as mãos atrás da cabeça e leve os cotovelos lentamente para trás. Mantenha a posição por cerca de 20 segundos.",
+    "amount": 50
+  },
+  {
+    "type": "body",
+    "description": "Mexa cada um dos seus dedos com cuidado: estenda-os, flexione-os, abra-os e feche-os.",
+    "amount": 50
+  },
+  {
+    "type": "body",
+    "description": "Olhe para o chão e, segurando mais atrás da cabeça, tente encostar o queixo no peito, mais inclinado para o lado direito. Depois, repita para o outro lado.",
+    "amount": 60
+  },
+  {
+    "type": "body",
+    "description": "Estique os braços acima da cabeça, entrelaçando os dedos e se mantenha nesta posição por alguns segundos.",
+    "amount": 60
   }
 ]
