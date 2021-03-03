@@ -103,14 +103,22 @@ export function ChallagesProvider({ children, ...rest }) {
       ariaLive: 'polite',
     })
     notify();
-    if (!isMobile) {
-      if (('showNotification' in ServiceWorkerRegistration.prototype) &&
-        ('PushManager' in window) &&
-        !(Notification.permission === 'denied')) {
+    if (('showNotification' in ServiceWorkerRegistration.prototype) &&
+      ('PushManager' in window) &&
+      !(Notification.permission === 'denied')) {
+        if (isMobile) {
+          navigator.serviceWorker.ready.then((registration) => {
+            registration.showNotification('Novo desafio disponível 🥊', {
+              body: `Valendo ${challenge.amount}xp!`,
+              icon: "/favicon.png",
+              vibrate: [200, 100, 200, 100, 200, 100, 400]
+            });
+          });
+        } else {
           new Notification('Novo desafio disponível 🥊', {
             body: `Valendo ${challenge.amount}xp!`
           })
-      }
+        }
     }
   }
 
