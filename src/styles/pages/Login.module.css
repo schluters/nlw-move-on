@@ -57,6 +57,7 @@
   transition: filter 0.2s;
   position: relative;
   overflow: hidden;
+  color: #fff;
 }
 
 .container button:not(:disabled):hover {

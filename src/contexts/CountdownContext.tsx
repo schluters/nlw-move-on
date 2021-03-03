@@ -17,10 +17,11 @@ interface CountdownProviderProps {
 export const CountdownContext = createContext({} as CountdownContextData)
 
 let countdownTimeout: NodeJS.Timeout;
-
 export function CountdownProvider({ children }) {
+  let timer = 0.5;
+  (location.host === 'localhost:3000') && (timer = 0.05);
   const { level, startNewChallange, resetChallenge } = useContext(ChallengesContext);
-  const challengeTime = 25 * 60;
+  const challengeTime = timer * 60;
   const [time, setTime] = useState(challengeTime);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);

@@ -25,6 +25,34 @@ export default createGlobalStyle`
   outline: var(--text-highlight);
 }
 
+.loading {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  transform: scale(2);
+  background: var(--background);
+  opacity: 0.75;
+}
+
+.c-loader {
+  animation: is-rotating 1s infinite;
+  border: 6px solid var(--gray-line);
+  border-radius: 50%;
+  border-top-color: var(--green);
+  height: 50px;
+  width: 50px;
+}
+
+@keyframes is-rotating {
+  to {
+    transform: rotate(1turn);
+    transform: scale(1.2);
+  }
+}
+
 @media(max-width: 1080px) {
   html {
     font-size: 93.75%;

@@ -58,7 +58,7 @@ export default function Home({ toggleTheme, ...rest }) {
   function loadProfile() {
     const firebase = loadFirebase();
     const db = firebase.ref("profiles");
-    let data:ProfilesProps = {
+    let userData:ProfilesProps = {
       user: rest.session.user,
       level: 1,
       challenges: 0,
@@ -68,8 +68,8 @@ export default function Home({ toggleTheme, ...rest }) {
     db.get()
       .then(snapshot => {
         const profile = snapshot.val();
-        if(!profile && data.user.email != "") {
-          db.push(data)
+        if(!profile && userData.user.email != "") {
+          db.push(userData)
         }
       })
       .catch(error => {
@@ -80,19 +80,17 @@ export default function Home({ toggleTheme, ...rest }) {
         db.child(profile).remove();
       }
       if (profiles[profile].user.email === rest.session.user.email) {
-        data = (profiles[profile])
-      } else if( rest.session.user.email ) {
-        db.push(data);
-      } else {
-        router.push('/login')
+        userData = (profiles[profile])
+      } else if( rest.session.user.email && !profiles[profile].user.email) {
+        db.push(userData);
       }
     }
-    return data;
+    return userData;
   };
-  const user = loadProfile();
+  const userLoaded = loadProfile();
   return (
     <ChallagesProvider
-      user={user}
+      user={userLoaded}
       saveUser={saveProfile}
       {...rest}
     >
