@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import usePersistedState from '../utils/usePersistedState';
 import light from '../styles/themes/light';
@@ -16,31 +17,55 @@ export default function MyApp({ Component, ...pageProps }) {
   }
   if (typeof window !== 'undefined' && loading) {
     return (
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <div className="loading">
-          <span className="c-loader"></span>
-        </div>
-      </ThemeProvider>
+      <>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+          />
+        </Head>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <div className="loading">
+            <span className="c-loader"></span>
+          </div>
+        </ThemeProvider>
+      </>
     )
   }
   if(session) {
     return (
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <div className="wrapper">
-          <Toaster />
-          <Sidebar toggleTheme={toggleTheme} />
-          <Component {...pageProps} toggleTheme={toggleTheme} session={session} />
-        </div>
-      </ThemeProvider>
+      <>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+          />
+        </Head>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <div className="wrapper">
+            <Toaster />
+            <Sidebar toggleTheme={toggleTheme} />
+            <Component {...pageProps} toggleTheme={toggleTheme} session={session} />
+          </div>
+        </ThemeProvider>
+      </>
     )
   }
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      { <Login {...pageProps} /> }
-    </ThemeProvider>
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        { <Login {...pageProps} /> }
+      </ThemeProvider>
+    </>
   )
 }
 export async function getServerSideProps(context) {

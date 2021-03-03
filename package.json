@@ -24,6 +24,8 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@firebase/app-types": "^0.6.1",
     "@firebase/firestore-types": "^2.1.0",
     "@types/js-cookie": "^2.2.6",
     "@types/next-auth": "^3.1.24",
@@ -32,6 +34,9 @@
     "@types/react-dom": "^17.0.1",
     "@types/styled-components": "^5.1.7",
     "@vercel/node": "^1.9.0",
-    "typescript": "^4.1.5"
+    "csstype": "^2.6.2",
+    "react-is": "^17.0.1",
+    "typescript": "^4.1.5",
+    "webpack": "^4.4.0"
   }
 }

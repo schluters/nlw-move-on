@@ -1,18 +1,23 @@
 import Document, {Html, Head, Main, NextScript } from 'next/document';
 
+const APP_NAME = 'Move.On'
 export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    return await Document.getInitialProps(ctx)
+  }
   render() {
     return (
       <Html>
         <Head>
+          <meta charSet="utf-8" />
           <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Rajdhani:wght@600&display=swap" rel="stylesheet" />
 
-          <meta name='application-name' content='Move.On' />
+          <meta name='application-name' content={APP_NAME} />
           <meta name='apple-mobile-web-app-capable' content='yes' />
           <meta name='apple-mobile-web-app-status-bar-style' content='default' />
-          <meta name='apple-mobile-web-app-title' content='Move.On' />
+          <meta name='apple-mobile-web-app-title' content={APP_NAME} />
           <meta name='description' content='O MoveOn é uma aplicação com base na técnica Pomodoro, destinada a desenvolvedores para auxiliar no cuidado da sua saúde e postura.' />
           <meta name='format-detection' content='telephone=no' />
           <meta name='mobile-web-app-capable' content='yes' />
@@ -31,15 +36,15 @@ export default class MyDocument extends Document {
 
           <meta name='twitter:card' content='summary' />
           <meta name='twitter:url' content='https://nlw-move-on.vercel.app/' />
-          <meta name='twitter:title' content='Move.On' />
+          <meta name='twitter:title' content={APP_NAME} />
           <meta name='twitter:description' content='O MoveOn é uma aplicação com base na técnica Pomodoro, destinada a desenvolvedores para auxiliar no cuidado da sua saúde e postura.' />
           <meta name='twitter:image' content='https://nlw-move-on.vercel.appstatic/android/android-launchericon-192-192.png' />
           <meta name='twitter:creator' content='@DavidWShadow' /
           >
           <meta property='og:type' content='website' />
-          <meta property='og:title' content='Move.On' />
+          <meta property='og:title' content={APP_NAME} />
           <meta property='og:description' content='O MoveOn é uma aplicação com base na técnica Pomodoro, destinada a desenvolvedores para auxiliar no cuidado da sua saúde e postura.' />
-          <meta property='og:site_name' content='Move.On' />
+          <meta property='og:site_name' content={APP_NAME} />
           <meta property='og:url' content='https://nlw-move-on.vercel.app/' />
           <meta property='og:image' content='https://nlw-move-on.vercel.appstatic/icons/apple-touch-icon.png' />
         </Head>
