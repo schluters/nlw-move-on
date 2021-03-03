@@ -7,7 +7,7 @@
   list-style: none;
 }
 
-.user {
+.user, .topUser {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 11fr;
@@ -23,6 +23,21 @@
   background: var(--shape);
   border-top-left-radius: 0.75rem;
   border-bottom-left-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.topUser .position::before {
+  display: block;
+  content: " ";
+  background: url(/icons/medal.svg) no-repeat center center;
+  background-size: contain;
+  width: 2.25rem;
+  height: 2.25rem;
+  position: absolute;
+  top: -0.25rem;
+  bottom: 0;
+  right: 0.25rem;
 }
 
 .position strong {

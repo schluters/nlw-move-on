@@ -19,7 +19,7 @@ export function Score(props) {
     <ul className={styles.container}>
       { usersSorted.map((user, idx) => {
         return (
-          <li key={ user.key } className={styles.user}>
+          <li key={ user.key } className={ idx === 0 ? styles.topUser : styles.user}>
             <div className={styles.position}>
               <strong>{ idx +1 }</strong>
             </div>
