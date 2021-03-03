@@ -92,4 +92,15 @@
   color: var(--text);
 }
 .score strong {
-  color: var(--blue-dark);}
+  color: var(--blue-dark);
+}
+
+@media(max-width: 720px) {
+  .score span {
+    align-items: center;
+    text-align: center;
+  }
+  .score strong {
+    font-size: 1.75rem;
+  }
+}

@@ -27,12 +27,12 @@ span.currentExperience {
   position: absolute;
   top: 17px;
   transform: translateX(-50%);
-  min-width: 3.75rem;
-  text-align: center;;
+  text-align: center;
   background: var(--green);
   color: var(--title);
-  padding: 2px 4px 4px;
+  padding: 0.5rem;
   border-radius: 5px;
+  white-space: nowrap;
 }
 
 span.currentExperience::after {

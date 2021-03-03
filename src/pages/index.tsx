@@ -14,6 +14,7 @@ import { CompletedChallenges } from '../components/CompletedChallenges';
 import { Countdown } from '../components/Countdown';
 import { ChallangeBox } from '../components/ChallengeBox';
 import { Sidebar } from '../components/Sidebar';
+import { Toaster } from 'react-hot-toast';
 
 interface UserProps {
   name: string;
@@ -99,6 +100,7 @@ export default function Home({ toggleTheme, ...rest }) {
         <title>Challenges | Move.On</title>
       </Head>
       <div className={styles.wrapper}>
+        <Toaster />
         <Sidebar toggleTheme={toggleTheme} />
         <div className={styles.container}>
           <ExperienceBar />

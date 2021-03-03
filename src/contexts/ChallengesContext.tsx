@@ -1,6 +1,7 @@
 import { createContext, useState, ReactNode, useEffect, useMemo } from 'react';
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
+import toast from 'react-hot-toast';
 
 interface Challenge {
   type: 'body' | 'eye';
@@ -58,7 +59,6 @@ export function ChallagesProvider({ children, ...rest }) {
     totalxp: totalExperience,
   });
 
-
   useEffect(() => {
     Notification.requestPermission();
   }, []);
@@ -90,13 +90,25 @@ export function ChallagesProvider({ children, ...rest }) {
     const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
     const challenge = challenges[randomChallengeIndex];
     setActiveChallenge(challenge);
-    if (Notification.permission !== "granted") {
-      Notification.requestPermission();
-    } else {
-      new Audio('/notification.mp3').play();
-      new Notification('Novo desafio disponível 🥊', {
-        body: `Valendo ${challenge.amount}xp!`
-      })
+    const notify = () => toast(`Desafio disponível, valendo ${challenge.amount}xp!`, {
+      duration: 5000,
+      style: {
+        borderRadius: '10px',
+        background: 'var(--title)',
+        color: 'var(--shape)',
+      },
+      icon: '🥊',
+      role: 'status',
+      ariaLive: 'polite',
+    })
+    notify();
+    if (('showNotification' in ServiceWorkerRegistration.prototype) &&
+      ('PushManager' in window) &&
+      !(Notification.permission === 'denied')) {
+        new Audio('/notification.mp3').play();
+        new Notification('Novo desafio disponível 🥊', {
+          body: `Valendo ${challenge.amount}xp!`
+        })
     }
   }
 

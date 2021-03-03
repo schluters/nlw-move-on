@@ -7,7 +7,6 @@ import { Score } from '../components/Score';
 
 
 export default function Leaderboard({ toggleTheme, ...rest }) {
-
   return (
     <div>
       <Head>
@@ -24,7 +23,7 @@ export default function Leaderboard({ toggleTheme, ...rest }) {
               <p className={styles.title}>Desafios</p>
               <p className={styles.title}>Experiência</p>
             </header>
-            <Score />
+            <Score profiles={rest.pageProps.profiles} />
           </section>
         </div>
       </div>

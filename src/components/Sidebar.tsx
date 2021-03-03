@@ -11,7 +11,9 @@ export function Sidebar({ toggleTheme }) {
   return (
     <aside className={styles.sidebarContainer}>
       <header className={styles.header}>
-        <img src="/icons/moveon.svg" alt="MoveOn" title="Aproveite o Move On!"/>
+        <a href="/" title="Aproveite o Move On!" >
+          <img src="/icons/moveon.svg" alt="MoveOn" title="Aproveite o Move On!"/>
+        </a>
       </header>
       <nav className={styles.nav}>
         <ul>

@@ -1,6 +1,5 @@
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import usePersistedState from '../utils/usePersistedState';
-
 import light from '../styles/themes/light';
 import dark from '../styles/themes/dark';
 import GlobalStyle from '../styles/global';
@@ -16,7 +15,7 @@ function MyApp({ Component, ...pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      {session ? <Component {...pageProps} toggleTheme={toggleTheme} session={session} /> : <Login {...pageProps} />}
+      {!session ? <Login {...pageProps} /> : <Component {...pageProps} toggleTheme={toggleTheme} session={session} />}
     </ThemeProvider>
   );
 }
