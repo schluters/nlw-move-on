@@ -4,6 +4,7 @@ import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
 import { BiHomeAlt, BiMedal, BiSun, BiMoon } from "react-icons/bi";
 import styles from '../styles/components/Sidebar.module.css';
+import { signOut } from 'next-auth/client';
 
 export function Sidebar({ toggleTheme }) {
   const router = useRouter();
@@ -21,7 +22,7 @@ export function Sidebar({ toggleTheme }) {
             <a href="/" title="Desafios" ><BiHomeAlt /></a>
           </li>
           <li className={ router.pathname === '/leaderboard' ? styles.active : '' } >
-            <a href="/leaderboard" title="Scoreboar" ><BiMedal /></a>
+            <a href="/leaderboard" title="Ranking" ><BiMedal /></a>
           </li>
         </ul>
       </nav>

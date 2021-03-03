@@ -2,7 +2,7 @@ import { createContext, useState, ReactNode, useEffect, useMemo } from 'react';
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
 import toast from 'react-hot-toast';
-
+import { isMobile } from 'react-device-detect';
 interface Challenge {
   type: 'body' | 'eye';
   description: string;
@@ -90,6 +90,7 @@ export function ChallagesProvider({ children, ...rest }) {
     const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
     const challenge = challenges[randomChallengeIndex];
     setActiveChallenge(challenge);
+    new Audio('/notification.mp3').play();
     const notify = () => toast(`Desafio disponível, valendo ${challenge.amount}xp!`, {
       duration: 5000,
       style: {
@@ -102,13 +103,14 @@ export function ChallagesProvider({ children, ...rest }) {
       ariaLive: 'polite',
     })
     notify();
-    if (('showNotification' in ServiceWorkerRegistration.prototype) &&
-      ('PushManager' in window) &&
-      !(Notification.permission === 'denied')) {
-        new Audio('/notification.mp3').play();
-        new Notification('Novo desafio disponível 🥊', {
-          body: `Valendo ${challenge.amount}xp!`
-        })
+    if (!isMobile) {
+      if (('showNotification' in ServiceWorkerRegistration.prototype) &&
+        ('PushManager' in window) &&
+        !(Notification.permission === 'denied')) {
+          new Notification('Novo desafio disponível 🥊', {
+            body: `Valendo ${challenge.amount}xp!`
+          })
+      }
     }
   }
 

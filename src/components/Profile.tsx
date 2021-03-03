@@ -5,10 +5,6 @@ import styles from '../styles/components/Profile.module.css';
 
 export function Profile(props) {
   const { level } = useContext(ChallengesContext);
-  function signOutMoveOn() {
-    signOut();
-  }
-
   return (
     <div className={styles.profileWrapper}>
       <div className={styles.profileContainer}>
@@ -21,7 +17,7 @@ export function Profile(props) {
           </p>
         </div>
       </div>
-      <button type="button" onClick={ signOutMoveOn } title="Sair do Move On" ><img src="icons/close.svg" alt="Sair" /></button>
+      <button type="button" onClick={ () => signOut() } title="Sair do Move On" ><img src="icons/close.svg" alt="Sair" /></button>
     </div>
   );
 }
