@@ -39,8 +39,7 @@ export default createGlobalStyle`
   align-items: center;
   justify-content: center;
   align-content: center;
-  background: var(--background);
-  opacity: 0.975;
+  background: rgba(0, 0, 0, 0.975);
   position: fixed;
   top: 0;
   left: 0;

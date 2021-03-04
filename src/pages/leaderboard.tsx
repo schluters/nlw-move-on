@@ -1,5 +1,8 @@
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
+import { useSession } from 'next-auth/client';
+import { useEffect } from 'react';
+import router from 'next/router';
 import { loadFirebase } from '../utils/firebase';
 import styles from '../styles/pages/Leaderboard.module.css';
 import { Sidebar } from '../components/Sidebar';
@@ -7,27 +10,42 @@ import { Score } from '../components/Score';
 
 
 export default function Leaderboard({ toggleTheme, ...rest }) {
-  return (
-    <>
-      <Head>
-        <title>Leaderboard | Move.On</title>
-      </Head>
-      <div className="wrapper">
-        <Sidebar toggleTheme={toggleTheme} />
-        <div className={styles.container}>
-          <header className={styles.headoard}><h2>Leaderboard</h2></header>
-          <section className={styles.leaderboard}>
-            <header>
-              <p className={styles.title}>Posição</p>
-              <p className={styles.title}>Usuário</p>
-              <p className={styles.title}>Desafios</p>
-              <p className={styles.title}>Experiência</p>
-            </header>
-            <Score profiles={rest.pageProps.profiles} />
-          </section>
+  const [ session, loading ] = useSession()
+  useEffect(() => {
+    if (!(session || loading)) {
+      router.push('/login')
+    } else {
+      router.push('/leaderboard')
+    }
+  }, [session, loading])
+  if (session) {
+    return (
+      <>
+        <Head>
+          <title>Leaderboard | Move.On</title>
+        </Head>
+        <div className="wrapper">
+          <Sidebar toggleTheme={toggleTheme} />
+          <div className={styles.container}>
+            <header className={styles.headoard}><h2>Leaderboard</h2></header>
+            <section className={styles.leaderboard}>
+              <header>
+                <p className={styles.title}>Posição</p>
+                <p className={styles.title}>Usuário</p>
+                <p className={styles.title}>Desafios</p>
+                <p className={styles.title}>Experiência</p>
+              </header>
+              <Score profiles={rest.pageProps.profiles} />
+            </section>
+          </div>
         </div>
-      </div>
-    </>
+      </>
+    )
+  }
+  return (
+    <div className="loading">
+      <span className="c-loader"></span>
+    </div>
   )
 }
 

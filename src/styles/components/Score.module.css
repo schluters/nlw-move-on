@@ -5,6 +5,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   list-style: none;
+  margin-bottom: 2rem;
 }
 
 .user, .topUser {
