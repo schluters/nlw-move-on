@@ -1,8 +1,8 @@
-import { createContext, useState, ReactNode, useEffect, useMemo } from 'react';
-import challenges from '../../challenges.json';
-import { LevelUpModal } from '../components/LevelUpModal';
-import toast from 'react-hot-toast';
-import { isMobile } from 'react-device-detect';
+import { createContext, useState, ReactNode, useEffect, useMemo } from 'react'
+import challenges from '../../challenges.json'
+import { LevelUpModal } from '../components/LevelUpModal'
+import toast from 'react-hot-toast'
+import { isMobile } from 'react-device-detect'
 interface Challenge {
   type: 'body' | 'eye';
   description: string;
@@ -39,29 +39,29 @@ interface ProfilesProps {
   totalxp: number;
 }
 
-export const ChallengesContext = createContext({} as ChallengesContextData);
+export const ChallengesContext = createContext({} as ChallengesContextData)
 
 export function ChallagesProvider({ children, ...rest }) {
-  const [dataUser] =  useState(rest.user);
-  const [level, setLevel] = useState(dataUser.level);
-  const [challengesCompleted, setChallengesCompleted] = useState(dataUser.challenges);
-  const [currentExperience, setCurrentExperience] = useState(dataUser.currentxp);
-  const [totalExperience, setTotalExperience] = useState(dataUser.totalxp);
+  const [dataUser] = useState(rest.user)
+  const [level, setLevel] = useState(dataUser.level)
+  const [challengesCompleted, setChallengesCompleted] = useState(dataUser.challenges)
+  const [currentExperience, setCurrentExperience] = useState(dataUser.currentxp)
+  const [totalExperience, setTotalExperience] = useState(dataUser.totalxp)
 
-  const [activeChallenge, setActiveChallenge] = useState(null);
-  const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
-  const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
+  const [activeChallenge, setActiveChallenge] = useState(null)
+  const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false)
+  const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
   const [profileData, setProfileData] = useState({
     user: dataUser.user,
     level: level,
     challenges: challengesCompleted,
     currentxp: currentExperience,
     totalxp: totalExperience,
-  });
+  })
 
   useEffect(() => {
     Notification.requestPermission();
-  }, []);
+  }, [])
 
   useEffect(() => {
     setProfileData({
@@ -71,26 +71,26 @@ export function ChallagesProvider({ children, ...rest }) {
       currentxp: currentExperience,
       totalxp: totalExperience,
     });
-  }, [level, currentExperience, challengesCompleted, totalExperience]);
+  }, [level, currentExperience, challengesCompleted, totalExperience])
 
   useMemo(() => {
-    rest.updateUser(profileData);
-  }, [profileData]);
+    rest.updateUser(profileData)
+  }, [profileData])
 
   function levelUp() {
-    setLevel(level + 1);
-    setIsLevelUpModalOpen(true);
+    setLevel(level + 1)
+    setIsLevelUpModalOpen(true)
   }
 
   function closeLevelUpModal() {
-    setIsLevelUpModalOpen(false);
+    setIsLevelUpModalOpen(false)
   }
 
   function startNewChallange() {
-    const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
-    const challenge = challenges[randomChallengeIndex];
-    setActiveChallenge(challenge);
-    new Audio('/notification.mp3').play();
+    const randomChallengeIndex = Math.floor(Math.random() * challenges.length)
+    const challenge = challenges[randomChallengeIndex]
+    setActiveChallenge(challenge)
+    new Audio('/notification.mp3').play()
     const notify = () => toast(`Desafio disponível, valendo ${challenge.amount}xp!`, {
       duration: 5000,
       style: {
@@ -102,7 +102,7 @@ export function ChallagesProvider({ children, ...rest }) {
       role: 'status',
       ariaLive: 'polite',
     })
-    notify();
+    notify()
     if (('showNotification' in ServiceWorkerRegistration.prototype) &&
       ('PushManager' in window) &&
       !(Notification.permission === 'denied')) {
@@ -112,8 +112,8 @@ export function ChallagesProvider({ children, ...rest }) {
               body: `Valendo ${challenge.amount}xp!`,
               icon: "/favicon.png",
               vibrate: [200, 100, 200, 100, 200, 100, 400]
-            });
-          });
+            })
+          })
         } else {
           new Notification('Novo desafio disponível 🥊', {
             body: `Valendo ${challenge.amount}xp!`
@@ -123,12 +123,12 @@ export function ChallagesProvider({ children, ...rest }) {
   }
 
   function resetChallenge() {
-    setActiveChallenge(null);
+    setActiveChallenge(null)
   }
 
   function completeChallenge() {
     if (!activeChallenge) {
-      return;
+      return
     }
     const { amount } = activeChallenge;
     let finalExperience = currentExperience + amount;

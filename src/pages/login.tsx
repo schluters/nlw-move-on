@@ -1,10 +1,23 @@
-import React from 'react';
 import Head from 'next/head';
-import { signIn } from 'next-auth/client';
+import { useRouter } from 'next/router'
+import { signIn, useSession } from 'next-auth/client';
 import styles from '../styles/pages/Login.module.css';
 import { IoLogoFacebook, IoLogoGithub, IoLogoGoogle } from "react-icons/io";
+import { useEffect } from 'react';
 
 export default function Login({...pageProps}) {
+  console.log(pageProps)
+  const userSession = pageProps.pageProps.session
+  const [ loading ] = useSession()
+  const router = useRouter()
+  useEffect(() => {
+    if (!(pageProps.session || loading)) {
+      router.push('/login')
+    } else {
+      router.push('/')
+    }
+  }, [userSession, loading])
+
   return (
     <div className={styles.wrapper}>
       <Head>

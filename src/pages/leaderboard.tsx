@@ -12,17 +12,20 @@ export default function Leaderboard({ toggleTheme, ...rest }) {
       <Head>
         <title>Leaderboard | Move.On</title>
       </Head>
-      <div className={styles.container}>
-        <header className={styles.headoard}><h2>Leaderboard</h2></header>
-        <section className={styles.leaderboard}>
-          <header>
-            <p className={styles.title}>Posição</p>
-            <p className={styles.title}>Usuário</p>
-            <p className={styles.title}>Desafios</p>
-            <p className={styles.title}>Experiência</p>
-          </header>
-          <Score profiles={rest.pageProps.profiles} />
-        </section>
+      <div className="wrapper">
+        <Sidebar toggleTheme={toggleTheme} />
+        <div className={styles.container}>
+          <header className={styles.headoard}><h2>Leaderboard</h2></header>
+          <section className={styles.leaderboard}>
+            <header>
+              <p className={styles.title}>Posição</p>
+              <p className={styles.title}>Usuário</p>
+              <p className={styles.title}>Desafios</p>
+              <p className={styles.title}>Experiência</p>
+            </header>
+            <Score profiles={rest.pageProps.profiles} />
+          </section>
+        </div>
       </div>
     </>
   )
