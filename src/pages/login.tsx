@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/client';
 import styles from '../styles/pages/Login.module.css';
 import { IoLogoFacebook, IoLogoGithub, IoLogoGoogle } from "react-icons/io";
 
-export default function Login() {
+export default function Login({...pageProps}) {
   return (
     <div className={styles.wrapper}>
       <Head>

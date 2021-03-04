@@ -11,6 +11,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 11fr;
+  margin-bottom: 1rem;
 }
 
 .position {
@@ -118,8 +119,11 @@
     align-items: center;
     text-align: center;
   }
+  .score p {
+    font-size: 0.75rem;
+  }
   .score strong {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
   .topUser .position::before {
     width: 2rem;

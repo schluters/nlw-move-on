@@ -20,14 +20,14 @@ export function Score(props) {
       { usersSorted.map((user, idx) => {
         return (
           <li key={ user.key } className={ idx === 0 ? styles.topUser : styles.user}>
-            <div className={styles.position}>
+            <div className={styles.position}  title={ user.user.name }>
               <strong>{ idx +1 }</strong>
             </div>
             <div className={styles.info}>
               <span className={styles.profile}>
                 <img className={styles.avatar} src={ user.user.image } alt={ user.user.name } />
                 <div>
-                  <strong>{ user.user.name }</strong>
+                  <strong >{ user.user.name }</strong>
                   <span>
                     <img src="icons/level.svg" alt="Level" />
                     Level { user.level }
