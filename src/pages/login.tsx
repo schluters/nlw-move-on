@@ -6,7 +6,6 @@ import { IoLogoFacebook, IoLogoGithub, IoLogoGoogle } from "react-icons/io";
 import { useEffect } from 'react';
 
 export default function Login({...pageProps}) {
-  console.log(pageProps)
   const userSession = pageProps.pageProps.session
   const [ loading ] = useSession()
   const router = useRouter()
@@ -30,8 +29,8 @@ export default function Login({...pageProps}) {
         <div className={styles.buttons}>
           <button className={styles.git} type="button" onClick={() => signIn('github') } ><IoLogoGithub /> Conectar com GitHub</button>
           <button className={styles.gg} type="button" onClick={() => signIn('google') } ><IoLogoGoogle /> Conectar com Google</button>
+          <button className={styles.fb} type="button" onClick={() => signIn('facebook') } ><IoLogoFacebook /> Conectar com Facebook</button>
         </div>
-          {/* <button className={styles.fb} type="button" onClick={() => signIn('facebook') } ><IoLogoFacebook /> Conectar com Facebook</button> */}
         <small>O <strong>MoveOn</strong> é uma aplicação com base na técnica Pomodoro, destinada a desenvolvedores para auxiliar no cuidado da sua saúde e postura.</small>
       </div>
     </div>

@@ -1,12 +1,21 @@
-import { useEffect, useMemo } from 'react'
+import Head from 'next/head'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { useSession, getSession } from 'next-auth/client'
 import { loadFirebase } from '../utils/firebase'
 import { toast, Toaster } from 'react-hot-toast'
-import Dashboard from '../pages/dashboard'
+
+import styles from '../styles/pages/Home.module.css'
+
+import { CountdownProvider } from '../contexts/CountdownContext'
+import { ChallagesProvider } from '../contexts/ChallengesContext'
+
 import { Sidebar } from '../components/Sidebar'
-
-
+import { ExperienceBar } from "../components/ExperienceBar"
+import { Profile } from '../components/Profile'
+import { CompletedChallenges } from '../components/CompletedChallenges'
+import { Countdown } from '../components/Countdown'
+import { ChallangeBox } from '../components/ChallengeBox'
 interface UserProps {
   name: string;
   email: string;
@@ -35,9 +44,19 @@ export default function Page({...pageProps}) {
     icon: '☹',
     role: 'status',
     ariaLive: 'polite',
-  })
+  });
+
+  useEffect(() => {
+    if (!(session || loading)) {
+      router.push('/login')
+    } else {
+      router.push('/')
+    }
+  }, [session, loading])
+
   const loadUser = useMemo(() => {
     if (userSession) {
+      !(userSession.user.email) && notifyEmail()
       const emptyUser = {
         user: userSession.user,
         level: 1,
@@ -47,26 +66,25 @@ export default function Page({...pageProps}) {
       };
       (profiles.length < 1) && loadFirebase().ref('profiles').push(emptyUser)
       const filterUser = profiles.filter((data:ProfilesProps) => data.user.email === userSession.user.email)
-      if (!filterUser) {
-        loadFirebase()
-        .ref("profiles")
-        .push(userSession.user)
+      const findUser = filterUser.find((data:ProfilesProps) => data.user.email === userSession.user.email)
+      if(!findUser) {
+        loadFirebase().ref('profiles').push(emptyUser)
         console.log('User created', userSession.user.email)
-        return userSession
+        return emptyUser
       } else {
-        const findUser = filterUser.find((data:ProfilesProps) => data.user.email === userSession.user.email)
         return findUser
       }
     }
-  }, [])
+  }, [userSession, profiles])
 
-  useEffect(() => {
-    if (!(userSession || loading)) {
-      router.push('/login')
-    } else {
-      router.push('/')
+  const updateProfile = useCallback(async (xpData) => {
+    if (xpData.totalxp > 0) {
+      (xpData.user.email === loadUser.user.email) && loadFirebase()
+        .ref("profiles")
+        .child(loadUser.key)
+        .update(xpData)
     }
-  }, [userSession, loading])
+  }, [])
 
   if (typeof window !== 'undefined' && loading) {
     return (
@@ -77,13 +95,41 @@ export default function Page({...pageProps}) {
   }
   if (session) {
     return (
-      <div className="wrapper">
-        <Toaster />
-        <Sidebar toggleTheme={pageProps.toggleTheme} />
-        <Dashboard user={loadUser} {...pageProps} />
-      </div>
-    )}
-  return <p>Access Denied</p>
+      <ChallagesProvider
+        user={loadUser}
+        updateUser={updateProfile}
+        {...pageProps}
+      >
+        <Head>
+          <title>Challenges | Move.On</title>
+        </Head>
+        <div className="wrapper">
+          <Toaster />
+          <Sidebar toggleTheme={pageProps.toggleTheme} />
+          <div className={styles.container}>
+            <ExperienceBar />
+            <CountdownProvider>
+              <section>
+                <div>
+                  <Profile data={loadUser} />
+                  <CompletedChallenges />
+                  <Countdown />
+                </div>
+                <div>
+                  <ChallangeBox />
+                </div>
+              </section>
+            </CountdownProvider>
+          </div>
+        </div>
+      </ChallagesProvider>
+    )
+  }
+  return (
+    <div className="loading">
+      <span className="c-loader"></span>
+    </div>
+  )
 }
 
 export async function getServerSideProps(context) {
@@ -109,26 +155,9 @@ export async function getServerSideProps(context) {
       .catch(error => {
         reject([error]);
       })
-  });
+  })
+
   return {
     props: { profiles, session },
   }
 }
-
-// export default function Home({ ...rest }) {
-//   const [ session, loading ] = useSession()
-//
-
-//   return (
-
-//   )
-// }
-
-// export const getServerSideProps:GetServerSideProps = async (context) => {
-//   const session = await getSession(context)
-//
-
-//   return {
-//     props: { profiles: result, session },
-//   }
-// }

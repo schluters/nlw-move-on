@@ -49,6 +49,7 @@ export default class MyDocument extends Document {
           <meta property='og:image' content='https://nlw-move-on.vercel.appstatic/icons/apple-touch-icon.png' />
         </Head>
         <body>
+          <div id="fb-root"></div>
           <Main />
           <NextScript />
         </body>
