@@ -65,7 +65,8 @@ export default function Page({...pageProps}) {
         totalxp: 0,
       };
       (profiles.length < 1) && loadFirebase().ref('profiles').push(emptyUser)
-      const filterUser = profiles.filter((data:ProfilesProps) => data.user.email === userSession.user.email)
+      const filterUser = profiles.filter((data:ProfilesProps) => data.user.email === userSession.user.email);
+      (filterUser.length > 1) && loadFirebase().ref('profiles').child(filterUser[1]).remove();
       const findUser = filterUser.find((data:ProfilesProps) => data.user.email === userSession.user.email)
       if(!findUser) {
         loadFirebase().ref('profiles').push(emptyUser)
@@ -75,7 +76,7 @@ export default function Page({...pageProps}) {
         return findUser
       }
     }
-  }, [userSession, profiles])
+  }, [userSession])
 
   const updateProfile = useCallback(async (xpData) => {
     if (xpData.totalxp > 0) {
