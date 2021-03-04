@@ -74,7 +74,7 @@ export function ChallagesProvider({ children, ...rest }) {
   }, [level, currentExperience, challengesCompleted, totalExperience]);
 
   useMemo(() => {
-    rest.saveUser(profileData);
+    rest.updateUser(profileData);
   }, [profileData]);
 
   function levelUp() {

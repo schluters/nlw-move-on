@@ -29,8 +29,10 @@ interface ProfilesProps {
 
 export default function Home({ toggleTheme, ...rest }) {
   const profiles = rest.pageProps.profiles
+  const userData = rest.session.user;
+
   useMemo(() => {
-    const notifyEmail = () => toast(`${rest.session.user.name} precisamos do seu e-mail!, infelizmente seus dados não serão salvos`, {
+    const notifyEmail = () => toast(`${userData.name} precisamos do seu e-mail!, infelizmente seus dados não serão salvos`, {
       duration: 5000,
       style: {
         borderRadius: '10px',
@@ -41,21 +43,23 @@ export default function Home({ toggleTheme, ...rest }) {
       role: 'status',
       ariaLive: 'polite',
     });
-    (!rest.session.user.email) && notifyEmail();
-    if (!profiles.filter((data:ProfilesProps) => data.user.email === rest.session.user.email)) {
-      loadFirebase()
-      .ref("profiles")
-      .push(rest.session.user)
-      console.log('User created', rest.session.user.email)
-    }
+    (!userData.email) && notifyEmail();
   }, [])
 
   const loadUser = useMemo(() => {
-    const loaded = (profile:ProfilesProps) => profile.user.email === rest.session.user.email
-    return profiles.find(loaded)
+    const filterUser = profiles.filter((data:ProfilesProps) => data.user.email === userData.email)
+    if (!filterUser) {
+      loadFirebase()
+      .ref("profiles")
+      .push(rest.session)
+      console.log('User created', userData.email)
+    } else {
+      const findUser = filterUser.find((data:ProfilesProps) => data.user.email === userData.email)
+      return findUser
+    }
   }, [])
 
-  const saveProfile = useCallback(async (xpData) => {
+  const updateProfile = useCallback(async (xpData) => {
     if (xpData.totalxp > 0) {
       (xpData.user.email === loadUser.user.email) && loadFirebase()
         .ref("profiles")
@@ -67,7 +71,7 @@ export default function Home({ toggleTheme, ...rest }) {
   return (
     <ChallagesProvider
       user={loadUser}
-      saveUser={saveProfile}
+      updateUser={updateProfile}
       {...rest}
     >
       <Head>
@@ -78,7 +82,7 @@ export default function Home({ toggleTheme, ...rest }) {
           <CountdownProvider>
             <section>
               <div>
-                <Profile data={rest.session} />
+                <Profile data={loadUser} />
                 <CompletedChallenges />
                 <Countdown />
               </div>
