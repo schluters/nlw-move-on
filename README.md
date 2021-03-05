@@ -2,7 +2,9 @@
     <img alt="Move.on" title="Move.on" src=".github/moveon.gif" />
 </h1>
 <p align="center">
-  <img  src="https://img.shields.io/github/license/schluters/nlw-move-on?color=00d700&style=for-the-badge" alt="License">
+  <a href="https://www.gnu.org/licenses/gpl-3.0.pt-br.html" title="License GPLv3">
+    <img  src="https://img.shields.io/github/license/schluters/nlw-move-on?color=00d700&style=for-the-badge" alt="License GPLv3">
+  </a>
   
   <img src="https://img.shields.io/github/forks/schluters/nlw-move-on?label=forks&message=MIT&color=00d700&style=for-the-badge" alt="Forks">     
 
@@ -43,11 +45,6 @@ Sistema desenvolvido com base no conhecimento adiquirido durante a semana do eve
 
 #### :computer: Preview application
 [![Deploy with Vercel](https://vercel.com/button)](https://nlw-move-on.vercel.app/)
-
-
-<p align="center">
-    <img width="50%" alt="Move.on" title="Move.on" src="/public/move-on-logo.svg" />
-</p>
 
 ## :ticket: Status
 :white_check_mark: DONE SUCCESSFULLY
@@ -141,7 +138,7 @@ FACEBOOK_CLIENT_SECRET=""
 
 ## :book: License
 
-Fully open and free code for studies and copies under license [GPLv3](https://www.gnu.org/licenses/gpl-3.0.pt-br.html).
+Fully open and free code for studies and copies under license [GPLv3](/LICENSE).
 
 
 ## :mortar_board: Developed by
