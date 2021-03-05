@@ -65,6 +65,25 @@ const Page: React.FC<AppProps> = ({ ...pageProps }) => {
         currentxp: 0,
         totalxp: 0
       }
+      loadFirebase()
+        .ref('profiles')
+        .get()
+        .then(snapshot => {
+          const users = []
+          snapshot.forEach(user => {
+            users.push(
+              Object.assign(
+                {
+                  key: user.key
+                },
+                user.val()
+              )
+            )
+          })
+          const filterUser = users.filter((data: ProfilesProps) => data.user.email === userSession.user.email)
+          filterUser.length > 1 && loadFirebase().ref('profiles').child(filterUser[1]).remove()
+        })
+
       profiles.length < 1 && loadFirebase().ref('profiles').push(emptyUser)
       const filterUser = profiles.filter((data: ProfilesProps) => data.user.email === userSession.user.email)
       filterUser.length > 1 && loadFirebase().ref('profiles').child(filterUser[1]).remove()
@@ -149,6 +168,15 @@ export async function getServerSideProps(context): Promise<any> {
               user.val()
             )
           )
+        })
+        // eslint-disable-next-line array-callback-return
+        data.filter((user, idx): void => {
+          const nextUser = data[idx + 1]
+          if (nextUser) {
+            if (user.user.email === nextUser.user.email) {
+              loadFirebase().ref('profiles').child(nextUser.key).remove()
+            }
+          }
         })
         resolve(data)
       })

@@ -19,6 +19,7 @@ const Leaderboard: React.FC<AppProps> = ({ toggleTheme, ...rest }) => {
       router.push('/leaderboard')
     }
   }, [session, loading])
+
   if (session) {
     return (
       <>
@@ -71,10 +72,19 @@ export const getServerSideProps: GetServerSideProps = async () => {
             )
           )
         })
+        // eslint-disable-next-line array-callback-return
+        data.filter((user, idx): void => {
+          const nextUser = data[idx + 1]
+          if (nextUser) {
+            if (user.user.email === nextUser.user.email) {
+              loadFirebase().ref('profiles').child(nextUser.key).remove()
+            }
+          }
+        })
         resolve(data)
       })
       .catch(error => {
-        reject([error])
+        reject(console.log(error.stack))
       })
   })
   return {
