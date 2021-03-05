@@ -20,12 +20,16 @@ export function Sidebar({ toggleTheme }): JSX.Element {
         <ul>
           <li className={router.pathname === '/' ? styles.active : ''}>
             <Link href="/">
-              <BiHomeAlt />
+              <a>
+                <BiHomeAlt />
+              </a>
             </Link>
           </li>
           <li className={router.pathname === '/leaderboard' ? styles.active : ''}>
             <Link href="/leaderboard">
-              <BiMedal />
+              <a>
+                <BiMedal />
+              </a>
             </Link>
           </li>
         </ul>
