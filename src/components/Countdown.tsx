@@ -1,23 +1,14 @@
-import { useContext } from 'react';
-import { CountdownContext } from '../contexts/CountdownContext';
+import React, { useContext } from 'react'
+import { CountdownContext } from '../contexts/CountdownContext'
+import styles from '../styles/components/Countdown.module.css'
 
-import styles from '../styles/components/Countdown.module.css';
+export function Countdown(): JSX.Element {
+  const { minutes, seconds, isActive, hasFinished, startCountdown, resetCountdown, percentToClose } = useContext(
+    CountdownContext
+  )
 
-
-export function Countdown() {
-
-  const {
-    minutes,
-    seconds,
-    isActive,
-    hasFinished,
-    startCountdown,
-    resetCountdown,
-    percentToClose
-  } = useContext(CountdownContext);
-
-  const [minuteL, minuteR] = String(minutes).padStart(2, '0').split('');
-  const [secondL, secondR] = String(seconds).padStart(2, '0').split('');
+  const [minuteL, minuteR] = String(minutes).padStart(2, '0').split('')
+  const [secondL, secondR] = String(seconds).padStart(2, '0').split('')
 
   return (
     <>
@@ -32,17 +23,14 @@ export function Countdown() {
           <span>{secondR}</span>
         </div>
       </div>
-      { hasFinished ? (
-        <button
-          disabled
-          className={styles.countdownButton}
-        >
+      {hasFinished ? (
+        <button disabled className={styles.countdownButton}>
           Ciclo encerrado
           <img src="icons/check-circle.svg" alt="Check" />
         </button>
       ) : (
         <>
-          { isActive ? (
+          {isActive ? (
             <button
               type="button"
               className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
@@ -61,9 +49,9 @@ export function Countdown() {
               Iniciar um ciclo
               <img src="icons/play-arrow.svg" alt="Play" />
             </button>
-          ) }
+          )}
         </>
       )}
     </>
-  );
+  )
 }

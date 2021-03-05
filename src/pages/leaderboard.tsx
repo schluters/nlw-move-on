@@ -1,16 +1,17 @@
-import Head from 'next/head';
-import { GetServerSideProps } from 'next';
-import { useSession } from 'next-auth/client';
-import { useEffect } from 'react';
-import router from 'next/router';
-import { loadFirebase } from '../utils/firebase';
-import styles from '../styles/pages/Leaderboard.module.css';
-import { Sidebar } from '../components/Sidebar';
-import { Score } from '../components/Score';
+import React, { useEffect } from 'react'
+import Head from 'next/head'
+import { GetServerSideProps } from 'next'
+import { useSession } from 'next-auth/client'
 
+import router from 'next/router'
+import { loadFirebase } from '../utils/firebase'
+import styles from '../styles/pages/Leaderboard.module.css'
+import { Sidebar } from '../components/Sidebar'
+import { Score } from '../components/Score'
+import { AppProps } from 'next/dist/next-server/lib/router/router'
 
-export default function Leaderboard({ toggleTheme, ...rest }) {
-  const [ session, loading ] = useSession()
+const Leaderboard: React.FC<AppProps> = ({ toggleTheme, ...rest }) => {
+  const [session, loading] = useSession()
   useEffect(() => {
     if (!(session || loading)) {
       router.push('/login')
@@ -27,7 +28,9 @@ export default function Leaderboard({ toggleTheme, ...rest }) {
         <div className="wrapper">
           <Sidebar toggleTheme={toggleTheme} />
           <div className={styles.container}>
-            <header className={styles.headoard}><h2>Leaderboard</h2></header>
+            <header className={styles.headoard}>
+              <h2>Leaderboard</h2>
+            </header>
             <section className={styles.leaderboard}>
               <header>
                 <p className={styles.title}>Posição</p>
@@ -48,29 +51,33 @@ export default function Leaderboard({ toggleTheme, ...rest }) {
     </div>
   )
 }
+export default Leaderboard
 
-
-export const getServerSideProps:GetServerSideProps = async () => {
-  const firebase = loadFirebase();
+export const getServerSideProps: GetServerSideProps = async () => {
+  const firebase = loadFirebase()
   const result = await new Promise((resolve, reject) => {
-    firebase.ref('profiles')
+    firebase
+      .ref('profiles')
       .get()
       .then(snapshot => {
-        let data = []
-        snapshot.forEach((user) => {
+        const data = []
+        snapshot.forEach(user => {
           data.push(
-            Object.assign({
-              key: user.key
-            }, user.val())
+            Object.assign(
+              {
+                key: user.key
+              },
+              user.val()
+            )
           )
         })
-        resolve(data);
+        resolve(data)
       })
       .catch(error => {
-        reject([error]);
+        reject([error])
       })
   })
   return {
-    props: { profiles: result },
+    props: { profiles: result }
   }
 }

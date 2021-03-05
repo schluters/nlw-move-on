@@ -1,5 +1,6 @@
+import React, { useCallback, useEffect, useMemo } from 'react'
 import Head from 'next/head'
-import { useCallback, useEffect, useMemo } from 'react'
+import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { useRouter } from 'next/router'
 import { useSession, getSession } from 'next-auth/client'
 import { loadFirebase } from '../utils/firebase'
@@ -11,40 +12,40 @@ import { CountdownProvider } from '../contexts/CountdownContext'
 import { ChallagesProvider } from '../contexts/ChallengesContext'
 
 import { Sidebar } from '../components/Sidebar'
-import { ExperienceBar } from "../components/ExperienceBar"
+import { ExperienceBar } from '../components/ExperienceBar'
 import { Profile } from '../components/Profile'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
 import { ChallangeBox } from '../components/ChallengeBox'
 interface UserProps {
-  name: string;
-  email: string;
-  image: string;
+  name: string
+  email: string
+  image: string
 }
 interface ProfilesProps {
-  user: UserProps;
-  level: number;
-  challenges: number;
-  currentxp: number;
-  totalxp: number;
+  user: UserProps
+  level: number
+  challenges: number
+  currentxp: number
+  totalxp: number
 }
-
-export default function Page({...pageProps}) {
-  const [ session, loading ] = useSession()
+const Page: React.FC<AppProps> = ({ ...pageProps }) => {
+  const [session, loading] = useSession()
   const router = useRouter()
   const profiles = pageProps.pageProps.profiles
   const userSession = pageProps.pageProps.session
-  const notifyEmail = () => toast(`${userSession.user.name} precisamos do seu e-mail!, infelizmente seus dados não serão salvos`, {
-    duration: 5000,
-    style: {
-      borderRadius: '10px',
-      background: 'var(--title)',
-      color: 'var(--shape)',
-    },
-    icon: '☹',
-    role: 'status',
-    ariaLive: 'polite',
-  });
+  const notifyEmail = (): string =>
+    toast(`${userSession.user.name} precisamos do seu e-mail!, infelizmente seus dados não serão salvos`, {
+      duration: 5000,
+      style: {
+        borderRadius: '10px',
+        background: 'var(--title)',
+        color: 'var(--shape)'
+      },
+      icon: '☹',
+      role: 'status',
+      ariaLive: 'polite'
+    })
 
   useEffect(() => {
     if (!(session || loading)) {
@@ -56,19 +57,19 @@ export default function Page({...pageProps}) {
 
   const loadUser = useMemo(() => {
     if (userSession) {
-      !(userSession.user.email) && notifyEmail()
+      !userSession.user.email && notifyEmail()
       const emptyUser = {
         user: userSession.user,
         level: 1,
         challenges: 0,
         currentxp: 0,
-        totalxp: 0,
-      };
-      (profiles.length < 1) && loadFirebase().ref('profiles').push(emptyUser)
-      const filterUser = profiles.filter((data:ProfilesProps) => data.user.email === userSession.user.email);
-      (filterUser.length > 1) && loadFirebase().ref('profiles').child(filterUser[1]).remove();
-      const findUser = filterUser.find((data:ProfilesProps) => data.user.email === userSession.user.email)
-      if(!findUser) {
+        totalxp: 0
+      }
+      profiles.length < 1 && loadFirebase().ref('profiles').push(emptyUser)
+      const filterUser = profiles.filter((data: ProfilesProps) => data.user.email === userSession.user.email)
+      filterUser.length > 1 && loadFirebase().ref('profiles').child(filterUser[1]).remove()
+      const findUser = filterUser.find((data: ProfilesProps) => data.user.email === userSession.user.email)
+      if (!findUser) {
         loadFirebase().ref('profiles').push(emptyUser)
         console.log('User created', userSession.user.email)
         return emptyUser
@@ -78,12 +79,9 @@ export default function Page({...pageProps}) {
     }
   }, [userSession])
 
-  const updateProfile = useCallback(async (xpData) => {
+  const updateProfile = useCallback(async xpData => {
     if (xpData.totalxp > 0) {
-      (xpData.user.email === loadUser.user.email) && loadFirebase()
-        .ref("profiles")
-        .child(loadUser.key)
-        .update(xpData)
+      xpData.user.email === loadUser.user.email && loadFirebase().ref('profiles').child(loadUser.key).update(xpData)
     }
   }, [])
 
@@ -96,11 +94,7 @@ export default function Page({...pageProps}) {
   }
   if (session) {
     return (
-      <ChallagesProvider
-        user={loadUser}
-        updateUser={updateProfile}
-        {...pageProps}
-      >
+      <ChallagesProvider user={loadUser} updateUser={updateProfile} {...pageProps}>
         <Head>
           <title>Challenges | Move.On</title>
         </Head>
@@ -132,33 +126,38 @@ export default function Page({...pageProps}) {
     </div>
   )
 }
+export default Page
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
   const firebase = loadFirebase()
   const profiles = await new Promise((resolve, reject) => {
-    firebase.ref('profiles')
+    firebase
+      .ref('profiles')
       .get()
       .then(snapshot => {
-        let data = []
-        snapshot.forEach((user) => {
-          if (!user.val().user.email || user.val().user.email === ""){
+        const data = []
+        snapshot.forEach(user => {
+          if (!user.val().user.email || user.val().user.email === '') {
             firebase.ref('profiles').child(user.key).remove()
           }
           data.push(
-            Object.assign({
-              key: user.key
-            }, user.val())
+            Object.assign(
+              {
+                key: user.key
+              },
+              user.val()
+            )
           )
         })
-        resolve(data);
+        resolve(data)
       })
       .catch(error => {
-        reject([error]);
+        reject([error])
       })
   })
 
   return {
-    props: { profiles, session },
+    props: { profiles, session }
   }
 }

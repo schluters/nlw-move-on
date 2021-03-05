@@ -1,3 +1,5 @@
+import React from 'react'
+import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider, DefaultTheme } from 'styled-components'
 import usePersistedState from '../utils/usePersistedState'
@@ -6,14 +8,13 @@ import dark from '../styles/themes/dark'
 import GlobalStyle from '../styles/global'
 import { Provider } from 'next-auth/client'
 
-
-export default function MyApp({ Component, ...pageProps }) {
+const MyApp: React.FC<AppProps> = ({ Component, ...pageProps }) => {
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light)
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     setTheme(theme.title === 'light' ? dark : light)
   }
   return (
-    <Provider session={pageProps.session} >
+    <Provider session={pageProps.session}>
       <Head>
         <meta
           name="viewport"
@@ -27,3 +28,5 @@ export default function MyApp({ Component, ...pageProps }) {
     </Provider>
   )
 }
+
+export default MyApp

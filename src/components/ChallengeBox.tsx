@@ -1,25 +1,25 @@
-import { useContext } from 'react';
-import styles from '../styles/components/ChallengeBox.module.css';
-import { ChallengesContext } from '../contexts/ChallengesContext';
-import { CountdownContext } from '../contexts/CountdownContext';
+import React, { useContext } from 'react'
+import styles from '../styles/components/ChallengeBox.module.css'
+import { ChallengesContext } from '../contexts/ChallengesContext'
+import { CountdownContext } from '../contexts/CountdownContext'
 
-export function ChallangeBox() {
-  const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengesContext);
-  const { resetCountdown } = useContext(CountdownContext);
+export function ChallangeBox(): JSX.Element {
+  const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengesContext)
+  const { resetCountdown } = useContext(CountdownContext)
 
-  function handleChallengeSucceeded() {
-    completeChallenge();
-    resetCountdown();
+  function handleChallengeSucceeded(): void {
+    completeChallenge()
+    resetCountdown()
   }
 
-  function handleChallengeFailed() {
-    resetChallenge();
-    resetCountdown();
+  function handleChallengeFailed(): void {
+    resetChallenge()
+    resetCountdown()
   }
 
   return (
     <div className={styles.challangeBoxConainer}>
-      { activeChallenge ? (
+      {activeChallenge ? (
         <div className={styles.challangeActive}>
           <header>Ganhe {activeChallenge.amount} xp</header>
           <main>
@@ -28,18 +28,10 @@ export function ChallangeBox() {
             <p>{activeChallenge.description}</p>
           </main>
           <footer>
-            <button
-              type="button"
-              className={styles.challangeFailedButton}
-              onClick={handleChallengeFailed}
-            >
+            <button type="button" className={styles.challangeFailedButton} onClick={handleChallengeFailed}>
               Falhei
             </button>
-            <button
-              type="button"
-              className={styles.ChallengesucceededButton}
-              onClick={handleChallengeSucceeded}
-            >
+            <button type="button" className={styles.ChallengesucceededButton} onClick={handleChallengeSucceeded}>
               Completei
             </button>
           </footer>
