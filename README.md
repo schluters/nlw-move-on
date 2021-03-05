@@ -23,10 +23,10 @@
 </p>
 
 ## :bookmark_tabs: About
-O **Move.On** é uma aplicação com base na técnica [Pomodoro](https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro), destinada a desenvolvedores para auxiliar no cuidado da sua saúde e postura.
 
-Sistema desenvolvido com base no conhecimento adiquirido durante a semana do evento **[&lt;nlw/&gt;#04](https://nextlevelweek.com/)** da **[Rocketseat](https://rocketseat.com.br/)**, na trilha de ReactJS ministrada pelo famoso *"Fala Dev"* [Diego Fernandes](https://github.com/diego3g).
+**Move.On** is an application based on the [Pomodoro](https://pt.wikipedia.org/wiki/T%C3%A9cnica_pomodoro) technique, aimed at developers that assists in the care of your health and posture.
 
+System developed based on the knowledge acquired during a week of the **[&lt;nlw/&gt;#04](https://nextlevelweek.com/)** event by **[Rocketseat](https://rocketseat.com.br/)**, on the ReactJS trail taught by the famous “Fala Dev” [Diego Fernandes](https://github.com/diego3g).
 
 <p align="center">
   <br />
