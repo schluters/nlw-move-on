@@ -14,8 +14,8 @@ export const CountdownContext = createContext({} as CountdownContextData)
 
 let countdownTimeout: NodeJS.Timeout
 export function CountdownProvider({ children }): JSX.Element {
-  let timer = 0.5
-  location.host === 'localhost:3000' && (timer = 0.05)
+  let timer = 25
+  location.host === 'localhost:3000' && (timer = 0.15)
   const { startNewChallange, resetChallenge } = useContext(ChallengesContext)
   const challengeTime = timer * 60
   const [time, setTime] = useState(challengeTime)
@@ -43,7 +43,7 @@ export function CountdownProvider({ children }): JSX.Element {
 
   useEffect(() => {
     if (isActive && time > 0) {
-      countdownTimeout = setTimeout(() => {
+      const countdownTimeout = window.setTimeout(() => {
         setTime(time - 1)
         setPercentToClose(100 - (time / challengeTime) * 100)
       }, 1000)

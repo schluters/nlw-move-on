@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import React, { createContext, useState, useEffect, useMemo } from 'react'
 import challenges from '../../challenges.json'
 import { LevelUpModal } from '../components/LevelUpModal'
@@ -87,7 +88,7 @@ export function ChallagesProvider({ children, ...rest }): JSX.Element {
     const challenge = challenges[randomChallengeIndex]
     setActiveChallenge(challenge)
     new Audio('/notification.mp3').play()
-    const notify = () =>
+    const notify = (): string =>
       toast(`Desafio disponível, valendo ${challenge.amount}xp!`, {
         duration: 5000,
         style: {

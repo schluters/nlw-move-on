@@ -128,7 +128,7 @@ const Page: React.FC<AppProps> = ({ ...pageProps }) => {
 }
 export default Page
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context): Promise<any> {
   const session = await getSession(context)
   const firebase = loadFirebase()
   const profiles = await new Promise((resolve, reject) => {
@@ -153,7 +153,7 @@ export async function getServerSideProps(context) {
         resolve(data)
       })
       .catch(error => {
-        reject([error])
+        reject(console.log(error.stack))
       })
   })
 
