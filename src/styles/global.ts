@@ -22,7 +22,47 @@ export default createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: var(--text-highlight);
+}
+
+@media(max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media(max-width: 767px) {
+  html {
+    font-size: 87.5%;
+  }
+  .wrapper {
+    margin-left: 0;
+  }
+}
+
+@media(min-width: 768px) {
+  :focus {
+    outline: 2px dotted var(--green);
+    filter: brightness(1.2) saturate(2);
+  }
+}
+
+body {
+  background: var(--background);
+  color:  var(--text);
+}
+
+body, input, textarea, button {
+  font: 400 1rem "Montserrat", sans-serif;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .wrapper {
@@ -46,6 +86,27 @@ export default createGlobalStyle`
   z-index: 3;
 }
 
+::-webkit-scrollbar {
+	width: 0.625rem;
+	height: 0.625rem;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment  {
+	display: none;
+}
+
+::-webkit-scrollbar-track-piece  {
+	/* background-color: #3b3b3b; */
+	background-color: var(--gray-line);
+	-webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+	background-color: var(--green);
+	-webkit-border-radius: 6px;
+}
+
 .c-loader {
   animation: pulsate 1s infinite;
   border: 6px solid var(--gray-line);
@@ -61,36 +122,4 @@ export default createGlobalStyle`
     100% {transform: scale(1.0, 1.0) rotate(360deg); opacity: 0.5;}
 }
 
-@media(max-width: 1080px) {
-  html {
-    font-size: 93.75%;
-  }
-}
-
-@media(max-width: 767px) {
-  html {
-    font-size: 87.5%;
-  }
-  .wrapper {
-    margin-left: 0;
-  }
-}
-
-body {
-  background: var(--background);
-  color:  var(--text);
-}
-
-body, input, textarea, button {
-  font: 400 1rem "Montserrat", sans-serif;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
 `

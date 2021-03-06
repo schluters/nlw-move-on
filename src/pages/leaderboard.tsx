@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { useSession } from 'next-auth/client'
 
-import router from 'next/router'
+import router, { useRouter } from 'next/router'
 import { loadFirebase } from '../utils/firebase'
 import styles from '../styles/pages/Leaderboard.module.css'
 import { Sidebar } from '../components/Sidebar'
@@ -11,7 +11,19 @@ import { Score } from '../components/Score'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 
 const Leaderboard: React.FC<AppProps> = ({ toggleTheme, ...rest }) => {
+  const router = useRouter()
   const [session, loading] = useSession()
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [initialUsers] = useState(rest.pageProps.profiles)
+
+  const refreshData = (): void => {
+    router.replace(router.asPath)
+    setIsRefreshing(true)
+  }
+  useEffect(() => {
+    setIsRefreshing(false)
+  }, [initialUsers])
+
   useEffect(() => {
     if (!(session || loading)) {
       router.push('/login')

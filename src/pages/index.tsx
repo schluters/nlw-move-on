@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import { useRouter } from 'next/router'
@@ -46,6 +46,17 @@ const Page: React.FC<AppProps> = ({ ...pageProps }) => {
       role: 'status',
       ariaLive: 'polite'
     })
+
+  const [isRefreshing, setIsRefreshing] = useState(false)
+
+  const refreshData = (): void => {
+    router.replace(router.asPath)
+    setIsRefreshing(true)
+  }
+
+  useEffect(() => {
+    setIsRefreshing(false)
+  }, [profiles])
 
   useEffect(() => {
     if (!(session || loading)) {
