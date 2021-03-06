@@ -24,6 +24,35 @@ export default createGlobalStyle`
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+}
+
+body {
+  background: var(--background);
+  color:  var(--text);
+}
+
+body, input, textarea, button {
+  font: 400 1rem "Montserrat", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  margin-left: 5rem;
+}
+
 @media(max-width: 1080px) {
   html {
     font-size: 93.75%;
@@ -44,32 +73,6 @@ export default createGlobalStyle`
     outline: 2px dotted var(--green);
     filter: brightness(1.2) saturate(2);
   }
-}
-
-body {
-  background: var(--background);
-  color:  var(--text);
-}
-
-body, input, textarea, button {
-  font: 400 1rem "Montserrat", sans-serif;
-}
-
-
-button {
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.wrapper {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  margin-left: 5rem;
 }
 
 .loading {
