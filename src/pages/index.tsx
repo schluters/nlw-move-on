@@ -46,7 +46,6 @@ const Page: React.FC<AppProps> = ({ ...pageProps }) => {
       role: 'status',
       ariaLive: 'polite'
     })
-
   const [isRefreshing, setIsRefreshing] = useState(false)
 
   const refreshData = (): void => {
@@ -126,7 +125,7 @@ const Page: React.FC<AppProps> = ({ ...pageProps }) => {
     return (
       <ChallagesProvider user={loadUser} updateUser={updateProfile} {...pageProps}>
         <Head>
-          <title>Challenges | Move.On</title>
+          <title>Siga em frente com os seus desafios / Move On with your challenges | Move.On</title>
         </Head>
         <div className="wrapper">
           <Toaster />

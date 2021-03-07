@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { useSession } from 'next-auth/client'
 
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { loadFirebase } from '../utils/firebase'
 import styles from '../styles/pages/Leaderboard.module.css'
 import { Sidebar } from '../components/Sidebar'

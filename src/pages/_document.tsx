@@ -42,7 +42,7 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/icons/moveon.svg" color="#121214" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 
-          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:url" content="https://nlw-move-on.vercel.app/" />
           <meta name="twitter:title" content={APP_NAME} />
           <meta
@@ -53,7 +53,8 @@ export default class MyDocument extends Document {
             name="twitter:image"
             content="https://nlw-move-on.vercel.appstatic/android/android-launchericon-192-192.png"
           />
-          <meta name="twitter:creator" content="@DavidWShadow" />
+          <meta name="twitter:creator" content="@schluters" />
+
           <meta property="og:type" content="website" />
           <meta property="og:title" content={APP_NAME} />
           <meta

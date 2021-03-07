@@ -40,11 +40,19 @@
   margin-top: 0.25rem;
 }
 
-.container button {
+.close {
   position: absolute;
   right: 0.5rem;
   top: 0.5rem;
   background:none;
   border:0;
   font-size: 0;
+}
+
+.socialShare {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
