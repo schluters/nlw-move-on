@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/api/levelup.png", "destination": "/api/levelup" }
+  ]
+}

@@ -5,15 +5,14 @@ import styles from '../styles/components/LevelUpModal.module.css'
 import { isMobile } from 'react-device-detect'
 import { FacebookIcon, LinkedinIcon, TwitterIcon, WhatsappIcon } from 'react-share'
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share'
-import { useRouter } from 'next/router'
 
 export function LevelUpModal(): JSX.Element {
-  const router = useRouter()
+  const isDev = process.env.NODE_ENV === 'development'
+  let host = 'https://nlw-move-on.vercel.app'
+  if (isDev) {
+    host = 'http://localhost:3000'
+  }
   const { level, challengesCompleted, totalExperience, closeLevelUpModal } = useContext(ChallengesContext)
-  const basePath = router.basePath
-  console.log({ basePath: router.basePath })
-  const { pathname } = router
-  console.log(pathname)
   return (
     <>
       <Head>
@@ -22,13 +21,13 @@ export function LevelUpModal(): JSX.Element {
         <meta name="twitter:description" content={`Venha me desafiar no Move.On, já tenho ${totalExperience}xp!`} />
         <meta
           name="twitter:image"
-          content={`${basePath}/api/image-generator?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
+          content={`${host}/api/levelup.png?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
         />
         <meta property="og:title" content={`Avancei para o level ${level}, no Move.On`} />
         <meta property="og:description" content={`Venha me desafiar no Move.On, já tenho ${totalExperience}xp!`} />
         <meta
           property="og:image"
-          content={`${basePath}/api/image-generator?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
+          content={`${host}/api/levelup.png?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
         />
       </Head>
       <div className={styles.overlay}>
@@ -42,8 +41,8 @@ export function LevelUpModal(): JSX.Element {
           <div className={styles.socialShare}>
             <FacebookShareButton
               quote={`Avancei para o level ${level}, no Move.On`}
-              hashtag="#Move.On #Move.It #Rocketseat"
-              url={`${basePath}/api/image-generator?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
+              hashtag="#MoveOn #MoveIt #Rocketseat"
+              url={`${host}/api/levelup.png?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
             >
               <FacebookIcon borderRadius={6} />
             </FacebookShareButton>
@@ -51,20 +50,20 @@ export function LevelUpModal(): JSX.Element {
               title={`Avancei para o level ${level}, no Move.On`}
               summary={`Venha me desafiar no Move.On, já tenho ${totalExperience}xp!`}
               source="Move.On"
-              url={`${basePath}/api/image-generator?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
+              url={`${host}/api/levelup.png?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
             >
               <LinkedinIcon borderRadius={6} />
             </LinkedinShareButton>
             <TwitterShareButton
               title={`Avancei para o level ${level}, no Move.On`}
-              url={`${basePath}/api/image-generator?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
+              url={`${host}/api/levelup.png?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
             >
               <TwitterIcon borderRadius={6} />
             </TwitterShareButton>
             {isMobile && (
               <WhatsappShareButton
                 title={`Avancei para o level ${level}, no Move.On`}
-                url={`${basePath}/api/image-generator?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
+                url={`${host}/api/levelup.png?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
               >
                 <WhatsappIcon borderRadius={6} />
               </WhatsappShareButton>

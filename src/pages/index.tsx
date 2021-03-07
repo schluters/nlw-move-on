@@ -132,7 +132,7 @@ const Page: React.FC<AppProps> = ({ ...pageProps }) => {
           <Sidebar toggleTheme={pageProps.toggleTheme} />
           <div className={styles.container}>
             <ExperienceBar />
-            <CountdownProvider>
+            <CountdownProvider user={loadUser}>
               <section>
                 <div>
                   <Profile data={loadUser} />

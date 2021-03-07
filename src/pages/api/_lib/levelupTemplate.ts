@@ -1,8 +1,13 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import { getScreenshot } from '../../utils/take-screenshot'
+export type Theme = 'light' | 'dark'
+interface GetHtmlProps {
+  level: number
+  challenges: number
+  totalxp: number
+  theme?: Theme
+}
 
-const getHTML = ({ level, challenges, totalxp }): string => `
-<html lang="en">
+export function getHtml({ level, challenges, totalxp, theme = 'light' }: GetHtmlProps): string {
+  return `<html lang="en">
   <head>
     <meta charset="UTF-8">
     <link
@@ -81,7 +86,7 @@ const getHTML = ({ level, challenges, totalxp }): string => `
       }
     </style>
   </head>
-  <body>
+  <body class=${theme}>
     <div class="container">
       <div class="box level">
         <header>
@@ -106,24 +111,5 @@ const getHTML = ({ level, challenges, totalxp }): string => `
       </div>
     </div>
   </body>
-</html>
-`
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const isHTMLDebugMode = false
-  const html = getHTML({
-    level: req.query.level,
-    challenges: req.query.challenges,
-    totalxp: req.query.totalxp
-  })
-  if (isHTMLDebugMode) {
-    res.setHeader('Content-Type', 'text/html')
-    return res.end(html)
-  }
-
-  const file = await getScreenshot(html, { width: 1200, height: 630 })
-
-  res.setHeader('Content-Type', 'image/png')
-  res.end(file)
+</html>`
 }
