@@ -5,7 +5,7 @@ import { getHtml } from './_lib/levelupTemplate'
 const isDev = !process.env.AWS_REGION
 const isHtmlDebug = process.env.OG_HTML_DEBUG === '1'
 
-export default async (req: NextApiRequest, res: NextApiResponse): Promise<any> => {
+export default async (req: NextApiRequest, res: NextApiResponse): Promise<string> => {
   try {
     const query = req.query
 
@@ -23,7 +23,6 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<any> =
     if (isHtmlDebug) {
       res.setHeader('Content-Type', 'text/html')
       res.end(html)
-
       return
     }
 
