@@ -140,7 +140,6 @@ export function ChallagesProvider({ children, ...rest }): JSX.Element {
     setActiveChallenge(null)
     setChallengesCompleted(challengesCompleted + 1)
     setTotalExperience(totalExperience + amount)
-    levelUp()
   }
 
   return (
