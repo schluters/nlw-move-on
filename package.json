@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.8",
-    "chrome-aws-lambda": "^5.3.0",
+    "chrome-aws-lambda": "^6.0.*",
     "firebase": "^8.2.9",
     "firebase-admin": "^9.5.0",
     "js-cookie": "^2.2.1",
@@ -19,7 +19,7 @@
     "next-firebase-auth": "^0.13.0-alpha.0",
     "next-images": "^1.7.0",
     "next-pwa": "^5.0.5",
-    "puppeteer-core": "^5.3.0",
+    "puppeteer-core": "^6.0.*",
     "react": "17.0.1",
     "react-device-detect": "^1.15.0",
     "react-dom": "17.0.1",

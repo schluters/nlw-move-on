@@ -7,7 +7,6 @@ const chromeExecPaths = {
 }
 
 const exePath = chromeExecPaths[process.platform]
-
 interface Options {
   args: string[]
   executablePath: string
@@ -16,7 +15,6 @@ interface Options {
 
 export async function getOptions(isDev: boolean): Promise<Options> {
   let options: Options
-
   if (isDev) {
     options = {
       args: [],
@@ -25,11 +23,11 @@ export async function getOptions(isDev: boolean): Promise<Options> {
     }
   } else {
     options = {
-      args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
+      args: [...chrome.args, '--no-sandbox', '--disable-setuid-sandbox'],
       executablePath: await chrome.executablePath,
-      headless: chrome.headless
+      headless: false
+      // headless: chrome.headless
     }
   }
-
   return options
 }

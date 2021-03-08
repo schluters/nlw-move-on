@@ -7,7 +7,8 @@ interface GetHtmlProps {
 }
 
 export function getHtml({ level, challenges, totalxp, theme = 'light' }: GetHtmlProps): string {
-  return `<html lang="en">
+  return `<!DOCTYPE html>
+  <html lang="en">
   <head>
     <meta charset="UTF-8">
     <link

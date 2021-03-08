@@ -66,11 +66,13 @@ System developed based on the knowledge acquired during a week of the **[&lt;nlw
 - Added PWA option in the application
 - Added Toast as notification
 - Added improvement in mobile notification
-- Added new challenges
 - Added progress bar on the Abandon cycle button
+- Added share buttons (facebook, linkedin, twitter, whatsapp)
+- Added new challenges
 - Added new icons
+- Changed Color Scheme
 
-## :electric_plug: Tecnologias:
+## :electric_plug: Technology:
 
 - **[ReactJS](https://reactjs.org/)**
 - **[NextJS](https://nextjs.org/)**
@@ -81,6 +83,9 @@ System developed based on the knowledge acquired during a week of the **[&lt;nlw
 - **[Next PWA](https://github.com/shadowwalker/next-pwa)**
 - **[React Hot Toast](https://react-hot-toast.com/)**
 - **[React Icons](https://react-icons.github.io/react-icons/)**
+- **[React Share](https://github.com/nygardk/react-share)**
+- **[React Switch](https://github.com/markusenglund/react-switch)**
+- **[Puppeteer](https://pptr.dev/)**
 - **[Eslint](https://eslint.org/)**
 - **[Prettier](https://prettier.io/)**
 
