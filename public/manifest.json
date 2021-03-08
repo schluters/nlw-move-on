@@ -44,6 +44,7 @@
       "density": "4.0"
     }],
   "related_applications": [{
-    "platform": "web"
+    "platform": "web",
+    "url": "https://nlw-move-on.vercel.app"
   }]
 }
