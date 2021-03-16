@@ -8,6 +8,7 @@ import { toast, Toaster } from 'react-hot-toast'
 
 import styles from '../styles/pages/Home.module.css'
 
+import usePersistedState from '../utils/usePersistedState'
 import { CountdownProvider } from '../contexts/CountdownContext'
 import { ChallagesProvider } from '../contexts/ChallengesContext'
 
@@ -30,6 +31,7 @@ interface ProfilesProps {
   totalxp: number
 }
 const Page: React.FC<AppProps> = ({ ...pageProps }) => {
+  const [stealing, setStealing] = usePersistedState('stealing', false)
   const [session, loading] = useSession()
   const router = useRouter()
   const profiles = pageProps.pageProps.profiles
@@ -58,6 +60,7 @@ const Page: React.FC<AppProps> = ({ ...pageProps }) => {
   }, [profiles])
 
   useEffect(() => {
+    (pageProps.router.query.stealing === 'true') ? setStealing(true) : setStealing(false)
     if (!(session || loading)) {
       router.push('/login')
     } else {
@@ -132,7 +135,7 @@ const Page: React.FC<AppProps> = ({ ...pageProps }) => {
           <Sidebar toggleTheme={pageProps.toggleTheme} />
           <div className={styles.container}>
             <ExperienceBar />
-            <CountdownProvider user={loadUser}>
+            <CountdownProvider stealing={stealing} >
               <section>
                 <div>
                   <Profile data={loadUser} />

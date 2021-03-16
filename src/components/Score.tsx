@@ -22,7 +22,7 @@ export function Score(props): JSX.Element {
   return (
     <ul className={styles.container}>
       {usersSorted.map(
-        (user, idx): JSX.Element => {
+        (user: any, idx: number): JSX.Element => {
           if (user.totalxp > 0) {
             return (
               <li key={user.key} className={idx === 0 ? styles.topUser : styles.user}>

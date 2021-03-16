@@ -39,7 +39,7 @@ export function LevelUpModal(): JSX.Element {
           </button>
           <div className={styles.socialShare}>
             <FacebookShareButton
-              quote={`Avancei para o level ${level}, no Move.On`}
+              quote={`Avancei para o level ${level}, no Move.On. Venha me desafiar no Move.On, já tenho ${totalExperience}xp!`}
               hashtag="#MoveOn #MoveIt #Rocketseat"
               url={`https://nlw-move-on.vercel.app/api/levelup.png?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
             >
@@ -54,14 +54,14 @@ export function LevelUpModal(): JSX.Element {
               <LinkedinIcon borderRadius={6} />
             </LinkedinShareButton>
             <TwitterShareButton
-              title={`Avancei para o level ${level}, no Move.On`}
+              title={`Avancei para o level ${level}, no Move.On. Venha me desafiar no Move.On, já tenho ${totalExperience}xp!`}
               url={`https://nlw-move-on.vercel.app/api/levelup.png?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
             >
               <TwitterIcon borderRadius={6} />
             </TwitterShareButton>
             {isMobile && (
               <WhatsappShareButton
-                title={`Avancei para o level ${level}, no Move.On`}
+                title={`Avancei para o level ${level}, no Move.On. Venha me desafiar no Move.On, já tenho ${totalExperience}xp!`}
                 url={`https://nlw-move-on.vercel.app/api/levelup.png?level=${level}&challenges=${challengesCompleted}&totalxp=${totalExperience}`}
               >
                 <WhatsappIcon borderRadius={6} />
